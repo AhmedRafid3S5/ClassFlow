@@ -1,0 +1,53 @@
+File format of input.json
+
+"Classrooms" : {
+    classroom_type : [Array of rooms]
+    #Example 
+    # "a": ["301","302"]
+
+}
+"Classes" : [
+    [Array of class info]
+    #Example
+    #{"Subject": "CSE4406", "Type": "L", "Professor": "Sakhawat", "Group": ["Sec1"], "Classroom": "r", "Length": "2"},
+    
+]
+
+def load_data(path):  #a function
+ 
+ opens the input.json File
+
+ for each class_info,
+     classroomType is assigned the classroom elemnt of the class_info Array
+     then university_class['Classroom'] element is assigned the allowed rooms Array
+     of the classroom_type that is stored in Classrooms. 
+
+ return the whole classes array as the data
+
+#responsible for generating the chromosome
+def generate_chromosome(parameter: the classes array):
+  Professors,classrooms,groups and subjects are JS mutable objects
+
+  we iterate over the data that contains class_info only.
+  we initialize or add unique professor to the professors object and create a list/array with 30 zeros
+  Each professor key will appear only once
+  we do the same thing for classrooms,groups and subjects.
+  For subjects, we create a mutable object for each unique subject key with elements
+  P,V and L which are arrays themselves, they will represent timeslot for the subject and its teaching type.
+
+
+  in the second loop:
+    we copy a single_class to a new_single_class
+    then we assign a random room (selected from one of the allowed classroom for that class type) to classroom
+    we select a random day, 0 = Monday, 4 = Friday
+    then we assign a random time slot for that class from range 0 to the last time slot it can START in, which depends on its Length
+    we then set that selected classroom as the the assigned_classroom for that new_single_class
+    similarly a time is also assigned randomly, this time (0 to 29) represents the slot as well as day the class will be held
+
+  in the third loop:
+    we fill up the slots for each prof,classroom,group key by incrementing by 1 to that slot starting from start time up to end time of the class.
+    we psuh_back the time and group for that class type in their respective subject key in the subjects object
+    #Example: time = 0, length = 2, so prof,grp and that classroom is occupied for time slots 0 to slot 1
+
+  the new_singe_class is then added at the end of the list of new_data. new_data constains all the random generated classes.
+  the new_data list and professors,classrooms,groups & subjects objects are then returned.

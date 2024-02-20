@@ -1,0 +1,47 @@
+{
+	"Classrooms": {
+		"a": ["Atelje"],
+		"k": ["Kolarac"],
+		"n": ["L01","L02","L03","L04","L05"],
+		"r": ["301","302","303","304","305","306","310","507","508","510","106","107","105"],
+		"s": ["Studio"]
+	},
+    "Classes": [
+    {"Subject": "CSE4406", "Type": "L", "Professor": "Sakhawat", "Group": ["Sec1"], "Classroom": "r", "Length": "2"},
+    {"Subject": "CSE4406", "Type": "L", "Professor": "Sakhawat", "Group": ["Sec2"], "Classroom": "r", "Length": "2"},
+    {"Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec2"], "Classroom": "r", "Length": "1"},
+    {"Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec2"], "Classroom": "r", "Length": "1"},
+    {"Subject": "CSE4404", "Type": "P", "Professor": "Milu", "Group": ["Sec1"], "Classroom": "n", "Length": "2"},
+    {"Subject": "CSE4404", "Type": "P", "Professor": "Milu", "Group": ["Sec2"], "Classroom": "n", "Length": "2"},
+    {"Subject": "EEE4383", "Type": "L", "Professor": "Saad", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "EEE4383", "Type": "L", "Professor": "Saad", "Group": ["Sec2"], "Classroom": "r", "Length": "1"},
+    {"Subject": "EEE4383", "Type": "L", "Professor": "Saad", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "EEE4383", "Type": "L", "Professor": "Saad", "Group": ["Sec2"], "Classroom": "r", "Length": "1"},
+    {"Subject": "EEE4384", "Type": "P", "Professor": "Sohail", "Group": ["Sec1"], "Classroom": "n", "Length": "2"},
+    {"Subject": "EEE4384", "Type": "P", "Professor": "Sohail", "Group": ["Sec2"], "Classroom": "n", "Length": "2"},
+    {"Subject": "MATH4441", "Type": "L", "Professor": "Molom", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "MATH4441", "Type": "L", "Professor": "Molom", "Group": ["Sec2"], "Classroom": "r", "Length": "1"},
+    {"Subject": "MATH4441", "Type": "L", "Professor": "Molom", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "MATH4441", "Type": "L", "Professor": "Molom", "Group": ["Sec2"], "Classroom": "r", "Length": "1"},
+    {"Subject": "CSE4402", "Type": "P", "Professor": "Ishmam", "Group": ["Sec1"], "Classroom": "n", "Length": "2"},
+    {"Subject": "CSE4402", "Type": "P", "Professor": "Ishmam", "Group": ["Sec2"], "Classroom": "n", "Length": "2"},
+    {"Subject": "CSE4407", "Type": "L", "Professor": "Shihab", "Group": ["Sec1"], "Classroom": "r", "Length": "2"},
+    {"Subject": "CSE4407", "Type": "L", "Professor": "Shihab", "Group": ["Sec2"], "Classroom": "r", "Length": "2"},
+    {"Subject": "CSE4408", "Type": "P", "Professor": "Shihab", "Group": ["Sec1"], "Classroom": "n", "Length": "2"},
+    {"Subject": "CSE4408", "Type": "P", "Professor": "Shihab", "Group": ["Sec2"], "Classroom": "n", "Length": "2"},
+    {"Subject": "HUM4441", "Type": "L", "Professor": "Shahriar", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "HUM4441", "Type": "L", "Professor": "Shahriar", "Group": ["Sec2"], "Classroom": "r", "Length": "1"},
+    {"Subject": "HUM4441", "Type": "L", "Professor": "Shahriar", "Group": ["Sec1"], "Classroom": "r", "Length": "1"},
+    {"Subject": "HUM4441", "Type": "L", "Professor": "Shahriar", "Group": ["Sec2"], "Classroom": "r", "Length": "1"}
+
+]
+
+
+
+
+
+
+
+}
