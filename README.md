@@ -1,2 +1,2 @@
 # ClassFlow
-Git repository for System Analysis &amp; Designs Lab
+Git repository for System Analysis &amp; Designs Lab Project
