@@ -1,5 +1,5 @@
 # Evolutionary timetable scheduling
-
+# Original code by Baksonator , I made modifications for our projects need.
 ## Abstract
 
 This project covers methods used for solving the timetable scheduling problem specific for timetable formats at the *Faculty of Computing, Belgrade*. The algorithms described represent a hybrid approach combining a 1+1 evolutionary strategy with shotgun hill-climbing. Apart from these, methods that were and taken into account and tested are simulated annealing and a classical genetic algorithm. However, the last two techniques have not yielded results as good as the forementioned ones.
@@ -87,4 +87,4 @@ The metrics are displayed in the following table.
 You can run the program by running the script `algorithm.py`. The parameters, including the input and output files, can be set in that script.
 
 #Hey Rafid here
-To run the code with a formatted time table output (Very Rudimentary at this stage) install node.js and run the console.js file only.
+To run the code with a formatted time table output (Very Rudimentary at this stage) install `node.js` and run the `console.js` file only.
