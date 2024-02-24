@@ -86,5 +86,6 @@ The metrics are displayed in the following table.
 
 You can run the program by running the script `algorithm.py`. The parameters, including the input and output files, can be set in that script.
 
-#Hey Rafid here
+## Hey! Rafid speaking...
+
 To run the code with a formatted time table output (Very Rudimentary at this stage) install `node.js` and run the `console.js` file only.
