@@ -5,8 +5,8 @@ from copy import deepcopy
 
 max_generations = 5000
 num_runs = 1
-input_file = r'classes\input0.json' ## r added to avoid invalid escape sequence
-output_file = r'classes\output0.json'
+input_file = r'./evolutionary-timetable-scheduling-master\classes\input0.json' ## r added to avoid invalid escape sequence
+output_file = r'./evolutionary-timetable-scheduling-master\classes\output0.json'
 cost_function = cost_functions.cost
 cost_function2 = cost_functions.cost2
 

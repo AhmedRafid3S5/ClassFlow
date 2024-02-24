@@ -1,7 +1,7 @@
 // import exec function from child_process module and assign it to exec 
 const {exec } = require('child_process')
 
-const pythonScriptPath = 'algorithm.py'
+const pythonScriptPath = './evolutionary-timetable-scheduling-master/algorithm.py';
 
 //Execute the python script, will wrap it inside a conditional statement when implementing so when a generate button is pressed, this algorithm is 
 //executed
