@@ -1,7 +1,32 @@
 import json
 import random
 
+#Global variables
+ #Variables to store occupancy or pre existing routine for professors,groups & rooms
+load_list_prof = {}
+load_list_rooms = {}
+load_list_groups = {}
+        
 #To Do: def load_occupancy_data(path):
+def load_occupancy_data(path,professor_load_list,rooms_load_list,groups_load_list):
+    with open(path, 'r') as read_file:
+        data = json.load(read_file)
+    professor_load_list.update(data['Professors'])
+    rooms_load_list.update(data['Rooms'])
+    groups_load_list.update(data['Groups'])
+
+
+
+def save_occupancy_data(path,professor_load_list,rooms_load_list,groups_load_list):
+    data = {'Professors':{},'Rooms':{},'Groups':{}}
+    data['Professors'] = professor_load_list
+    data['Rooms'] = rooms_load_list
+    data['Groups'] = groups_load_list
+
+    with open(path,'w') as write_file:
+        json.dump(data,write_file,indent=4)
+
+
 
 def load_data(path):
     with open(path, 'r') as read_file:
@@ -21,7 +46,18 @@ def generate_chromosome(data):
     groups = {}
     subjects = {}
 
+   
+
     new_data = []
+
+    input_file = r'./evolutionary-timetable-scheduling-master\classes\occupancy.json'
+    load_occupancy_data(input_file,load_list_prof,load_list_rooms,load_list_groups)
+    
+    #debug lines..
+    """
+    if(len(load_list_prof) != 0):
+      print('loaded successfully from internal function')
+    """
 
     for single_class in data:
         professors[single_class['Professor']] = [0] * 30
@@ -50,10 +86,20 @@ def generate_chromosome(data):
             for group in new_single_class['Group']:
                 groups[group][i] += 1
         subjects[new_single_class['Subject']][new_single_class['Type']].append((time, new_single_class['Group']))
+        
+        #add weight according to pre existing occupancy
+        #If occupied, increment that time slot for that prof and classroom by one
+        for i in range(time, time + int(single_class['Length'])):
+            if(new_single_class['Professor'] in load_list_prof):
+                professors[new_single_class['Professor']][i] += load_list_prof[new_single_class['Professor']][i]
+            if(group in load_list_groups):
+                for group in new_single_class['Group']:
+                    groups[group][i] += load_list_groups[group][i]
+            if(classroom in load_list_rooms):
+                classrooms[classroom][i] += load_list_rooms[classroom][i]
 
         new_data.append(new_single_class)
-    #To Do : Here check if the professor and classroom are already occupied or not compared to an existing schedule file
-        #If occupied, increment that time slot for that prof and classroom by one
+        
     return (new_data, professors, classrooms, groups, subjects)
 
 def write_data(data, path):

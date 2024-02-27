@@ -7,6 +7,7 @@ max_generations = 5000
 num_runs = 1
 input_file = r'./evolutionary-timetable-scheduling-master\classes\input0.json' ## r added to avoid invalid escape sequence
 output_file = r'./evolutionary-timetable-scheduling-master\classes\output0.json'
+occupancy_file = r'./evolutionary-timetable-scheduling-master\classes\occupancy.json'
 cost_function = cost_functions.cost
 cost_function2 = cost_functions.cost2
 
@@ -165,6 +166,18 @@ def evolutionary_algorithm():
     print('Average prof cost is:', total_prof_cost / len(chromosome[1]))
     print('Total prof load is:', total_prof_load)
     print('Free hour:', free_hour, ', 59')
-
+    
+    #updating global array for occupancy list of professors,groups & rooms in data.py file
+    #CAUTION: THIS CODE LINES MAY NEED TO BE CHANGED SINCE UNTILL ADMIN APPROVES THE ROUTINE, OCCUPANCY LIST WON'T BE UPDATED
+    for prof in chromosome[1]:
+        if prof not in dt.load_list_prof:
+            dt.load_list_prof[prof] = chromosome[1][prof]
+        elif prof in dt.load_list_prof:
+            for i in range(len(chromosome[1][prof])):
+                dt.load_list_prof[prof][i] += chromosome[1][prof][i]
+    
+    #save updated occupancy list to occupancy.json file
+    #CAUTION: THIS CODE LINES MAY NEED TO BE CHANGED SINCE UNTILL ADMIN APPROVES THE ROUTINE, OCCUPANCY LIST WON'T BE UPDATED
+    dt.save_occupancy_data(occupancy_file,dt.load_list_prof,dt.load_list_rooms,dt.load_list_groups)
 
 evolutionary_algorithm()
