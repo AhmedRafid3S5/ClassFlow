@@ -88,7 +88,15 @@ for (let dayIndex = 0; dayIndex < days.length; dayIndex++) {
 }
 // Iterate over each time slot for each day
 
+const fs = require('fs');
 
+function writeData(data, path) {
+    fs.writeFileSync(path, JSON.stringify(data, null, 4));
+}
+
+const data = timetable;
+const path = 'processedTimetable.json';
+writeData(data,path);
 
 
 
