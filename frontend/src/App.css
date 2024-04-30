@@ -37,66 +37,72 @@
   }
 }
 
-table {
-  margin-left: auto;
-  margin-right: auto;
+/* Set the background image from the assets folder, apply a blur effect */
+body {
+  background-image: url('./assets/A.jpg'); /* Adjust the path as necessary */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
-  /* CSS to increase row height */
-     /* CSS to increase row height and add dashed borders */
-     table tbody tr {
-      height: 50px; /* Adjust the height as needed */
-      border-top: 5px solid black; /* Add dashed border below each row */
-    }
-  
-    /* CSS to increase column width and add dashed borders */
-    table th,
-    table td {
-      width: 150px; /* Adjust the width as needed */
-      text-align: center; /* Optional: Center-align the content */
-      border-right: 2px dashed black; /* Add dashed border to the right of each cell */
-      border-bottom: 2px dashed black;
-    }
+.login-container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: rgba(128, 128, 128, 0.5); /* Grey with opacity */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(8px); /* This will give a frosted glass effect to the container */
+}
 
-    table th:first-child,
-    table td:first-child{
-      border-left: 2px dashed black;
-    }
-    table th{
-      border-top: 2px dashed black;
-    }
+/* Style for the login title */
+h2 {
+  text-align: center;
+  text-transform: uppercase; /* Capitalize the text */
+  font-family: 'Helvetica Neue', sans-serif; /* Choose a better font */
+  color: white; /* Set the text color to white */
+  margin-bottom: 20px;
+}
 
-    .App {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-    
-    #timetable {
-      margin-bottom: 20px;
-    }
-    
-    .section-container {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-    }
-    
-    .section {
-      flex-basis: 45%; /* Adjust the width of each section */
-    }
-    
-    .section ol {
-      padding-left: 20px; /* Add left padding to the ordered list */
-    }
+/* Rest of the styles unchanged */
+.form-group {
+  margin-bottom: 10px;
+}
 
-    .separator {
-      border-left: 4px solid green;
-      height: 500px;
-      position: absolute;
-      left: 50%;
-      margin-left: -3px;
-      top: 300;
-    }
-    
+label {
+  display: block;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: calc(100% - 16px);
+  padding: 8px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
