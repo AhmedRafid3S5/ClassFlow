@@ -1,0 +1,132 @@
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('./assets/bg.jpg');
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover; 
+  -webkit-backdrop-filter: blur(8px); 
+  backdrop-filter: blur(8px); 
+  overflow: hidden; 
+}
+
+.app {
+  display: flex;
+  justify-content: space-evenly; 
+  padding: 20px;
+}
+
+
+.app-container {
+  text-align: center; 
+  width: 100%; 
+  margin: 0 auto; 
+}
+
+
+.dashboard-header {
+  font-size: 52px; 
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+  font-weight: bold;
+  color: #d6dbe0; 
+  padding: 50px 0 30px 0; 
+  width: 100%; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+}
+
+
+.panes-container {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-evenly; 
+  padding: 20px;
+}
+
+.pane {
+  width: 30%;
+  padding: 20px; 
+  background-color: rgba(226, 226, 226, 0.7);
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  margin-bottom: 20px; 
+  color: #232527;
+}
+
+
+.pane h2 {
+  text-align: center; 
+  color:#2a496d;
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif; 
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+}
+
+.pane ul {
+  list-style-type: none; 
+  padding: 0; 
+}
+
+.pane .list-item {
+  background-color: #ffffffa5;
+  margin: 8px 0; 
+  padding: 10px; 
+  border: 1px solid #ccc;
+  border-radius: 4px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
+  overflow: hidden; 
+  word-wrap: break-word; 
+  transition: padding 0.3s ease, margin 0.3s ease; 
+}
+
+.pane .list-item:hover {
+  padding: 15px; 
+  margin: 3px 0; 
+}
+
+ul, table {
+  width: 100%; 
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse; 
+}
+
+th, td {
+  text-align: left;
+  padding: 8px; 
+  border-bottom: 1px solid #faf9f9; 
+}
+
+button {
+  border-radius: 12px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  transition: border-color 0.25s;
+  margin-right: 10px; 
+  width: 100px; 
+  border: none;
+  cursor: pointer;
+  background-color: #104467; 
+  color: white;
+  display: inline-block; 
+}
+
+
+
+button:last-child {
+  margin-right: 0; 
+}
+
+button:hover {
+  background-color: #37a2b7ae; 
+}
+
+
+.space-buttons button:last-child {
+  margin-right: 0;
+}
