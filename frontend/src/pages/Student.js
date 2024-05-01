@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 //const mysql = require('mysql2');
-const timetable = require('../processedTimetable.json');
+const timetable = require('../evolutionary-timetable-scheduling-master/processedTimetable.json');
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 const slots = ["8:00AM-9:15AM", "9:15AM-10:30AM", "10:30AM-11:45AM", "11:45AM-1:00PM", "2:30PM-3:45PM", "3:45PM-5:00PM"];
 //const {getEventsList} = require('./database');
@@ -13,7 +13,7 @@ const slots = ["8:00AM-9:15AM", "9:15AM-10:30AM", "10:30AM-11:45AM", "11:45AM-1:
 function classInfo(timetable, idx) {
   var info = [];
   for (var i = 0; i < timetable[idx].length; i++) {
-    var str = timetable[idx][i].Subject + " " + timetable[idx][i].Assigned_classroom + " " + timetable[idx][i].Group[0];
+    var str = timetable[idx][i].Subject + " " + timetable[idx][i].Assigned_classroom + " " + timetable[idx][i].Group[0] + "\n";
     info.push(str);
   }
   return info;

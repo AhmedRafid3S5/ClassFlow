@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import LoginPage from './LoginPage';
 import Student from './pages/Student';
 import PrivateRoutes from './utils/PrivateRoutes';
+import RoutineMaker from './pages/RoutineMaker';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route element={<PrivateRoutes/>}>
                <Route element={<Student/>} path="/StudentDashboard"/>
+               <Route element={<RoutineMaker/>} path="/RoutineMaker"/>
                {/*Nest other routes & components here*/}
                
           </Route>
