@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
+const fs = require('fs').promises;
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,42 @@ const pool = mysql.createPool({
   password: 'admin1234',
   database: 'classflow'
 });
+
+
+// Paths to JSON files
+//const infoFilePath = "my-app\\src\\evolutionary-timetable-scheduling-master\\classes\\Info_CSE.json"
+const outputFilePath = "my-app\\src\\evolutionary-timetable-scheduling-master\\classes\\input0.json"
+
+const filePath = 'backend-api\Info_CSE.json'; // Replace with relative path
+
+
+
+// POST API to send output0.json
+app.post('/output', async (req, res) => {
+    fs.readFile(outputFilePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading the file:', err);
+            return res.status(500).json({ error: 'Failed to read file' });
+        }
+        return res.json(JSON.parse(data));
+    });
+});
+
+
+app.post('/save-class-data', (req, res) => {
+  const data = req.body; // This is your JSON data from the client side
+
+  // Write the JSON data to the specified file path
+  fs.writeFile(outputFilePath, JSON.stringify(data, null, 2), 'utf8', (err) => {
+      if (err) {
+          console.error('Failed to write to file', err);
+          return res.status(500).json({ error: 'Failed to save data' });
+      }
+      res.status(200).json({ message: 'Data saved successfully' });
+  });
+});
+
+
 
 // API endpoint to fetch upcoming events
 app.get('/events', async (req, res) => {
@@ -92,6 +129,16 @@ app.post('/polls', async (req, res) => {
     res.status(201).json({ message: 'Poll created successfully' });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+app.get('/infoCSE', async (req, res) => {
+  try {
+    data = require('../my-app/src/evolutionary-timetable-scheduling-master/classes/Info_CSE.json')
+    res.json(data);
+  } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
