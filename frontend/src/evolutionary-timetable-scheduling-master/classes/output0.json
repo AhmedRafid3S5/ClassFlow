@@ -54,7 +54,7 @@
     {
         "Subject": "CSE4403",
         "Type": "L",
-        "Professor": "MM",
+        "Professor": "Milu",
         "Group": [
             "Sec1"
         ],
@@ -80,7 +80,7 @@
     {
         "Subject": "CSE4403",
         "Type": "L",
-        "Professor": "MM",
+        "Professor": "Milu",
         "Group": [
             "Sec2"
         ],
@@ -106,7 +106,7 @@
     {
         "Subject": "CSE4403",
         "Type": "L",
-        "Professor": "MM",
+        "Professor": "Milu",
         "Group": [
             "Sec1"
         ],
@@ -132,7 +132,7 @@
     {
         "Subject": "CSE4403",
         "Type": "L",
-        "Professor": "MM",
+        "Professor": "Milu",
         "Group": [
             "Sec2"
         ],
@@ -158,7 +158,7 @@
     {
         "Subject": "CSE4404",
         "Type": "P",
-        "Professor": "MM",
+        "Professor": "Milu",
         "Group": [
             "Sec1"
         ],
@@ -176,7 +176,7 @@
     {
         "Subject": "CSE4404",
         "Type": "P",
-        "Professor": "MM",
+        "Professor": "Milu",
         "Group": [
             "Sec2"
         ],
@@ -334,7 +334,7 @@
     {
         "Subject": "MATH4441",
         "Type": "L",
-        "Professor": "Mahbub",
+        "Professor": "Molom",
         "Group": [
             "Sec1"
         ],
@@ -360,7 +360,7 @@
     {
         "Subject": "MATH4441",
         "Type": "L",
-        "Professor": "Mahbub",
+        "Professor": "Molom",
         "Group": [
             "Sec2"
         ],
@@ -386,7 +386,7 @@
     {
         "Subject": "MATH4441",
         "Type": "L",
-        "Professor": "Mahbub",
+        "Professor": "Molom",
         "Group": [
             "Sec1"
         ],
@@ -412,7 +412,7 @@
     {
         "Subject": "MATH4441",
         "Type": "L",
-        "Professor": "Mahbub",
+        "Professor": "Molom",
         "Group": [
             "Sec2"
         ],
