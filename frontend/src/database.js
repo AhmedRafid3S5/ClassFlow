@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   host: '127.0.0.1', //must change this url if needed
   port: '3306',
   user: 'root',
-  password: 'admin1234',
+  password: '12345',
   database: 'classflow',
   waitForConnections: true,
   connectionLimit: 10,

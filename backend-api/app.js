@@ -12,8 +12,33 @@ const pool = mysql.createPool({
   host: '127.0.0.1',
   port: '3306',
   user: 'root',
-  password: 'admin1234',
+  password: '12345',
   database: 'classflow'
+});
+
+// Login route
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password are required" });
+  }
+
+  try {
+    const query = 'SELECT id, username, role, department, batch FROM users WHERE username = ? AND password = ?';  //SELECT * FROM users WHERE username = ? AND password = ?
+    const [results] = await pool.query(query, [username, password]);
+
+    if (results.length > 0) {
+      res.json({ 
+        message: "Login successful",
+        user: results[0] //added 
+      });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error('Error executing login query:', error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 // API endpoint to fetch upcoming events
