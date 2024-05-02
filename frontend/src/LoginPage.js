@@ -8,8 +8,32 @@ const LoginPage = ({ onLogin }) => {
 
   const handleLogin = (event) => {
     event.preventDefault();
+<<<<<<< Updated upstream
     // Implement login logic here
     onLogin(username, password);
+=======
+    try {
+      const response = await axios.post('http://localhost:3000/login', { username, password });
+      if (response.data.user) {
+        const { role } = response.data.user;
+        onLogin(true);  // Trigger any state update or context update for logged-in user
+        // Redirect based on role
+        if (role === 'admin') {
+          window.location.href = '/AdminDashboard'; // Adjust as needed
+        } else if (role === 'student') {
+          window.location.href = '/StudentDashboard'; // Adjust as needed
+        } else {
+          window.location.href = '/'; // Default or error case
+        }
+      } else {
+        setMessage('Login failed');
+        onLogin(false);
+      }
+    } catch (error) {
+      setMessage(error.response ? error.response.data.message : 'Login failed');
+      onLogin(false);
+    }
+>>>>>>> Stashed changes
   };
 
   return (

@@ -7,6 +7,7 @@ import LoginPage from './LoginPage';
 import Student from './pages/Student';
 import PrivateRoutes from './utils/PrivateRoutes';
 import RoutineMaker from './pages/RoutineMaker';
+import Admin from './pages/Admin';
 
 function App() {
 
@@ -23,6 +24,8 @@ function App() {
           <Route element={<PrivateRoutes/>}>
                <Route element={<Student/>} path="/StudentDashboard"/>
                <Route element={<RoutineMaker/>} path="/RoutineMaker"/>
+               <Route element={<Admin/>} path="/AdminDashboard"/>
+
                {/*Nest other routes & components here*/}
                
           </Route>
