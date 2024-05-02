@@ -222,7 +222,7 @@ function Student() {
       </table>
 
       <div className="section-container">
-        <div className="section" ref={sectionRoutineRef}>
+        <div className="sectionPolls" ref={sectionRoutineRef}>
           <h2>Student Polls</h2>
           {/*openGoogleForms only for CRS*/}
           {<button 
@@ -247,7 +247,7 @@ function Student() {
 
         <div className="separator" ref={separatorRef}></div>
 
-        <div className="section" ref={sectionEventsRef}>
+        <div className="sectionEvents" ref={sectionEventsRef}>
           <h2>Upcoming events !!</h2>
           <ol>
             {data.map((event, index) => (
