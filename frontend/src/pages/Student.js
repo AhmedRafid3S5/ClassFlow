@@ -171,6 +171,7 @@ function Student() {
 
   return (
     <div className="Student">
+     <h1 className="StudentDashboard">Student Dashboard</h1>
       <div>
         <select id="semester">
           {/* Options for semester dropdown */}

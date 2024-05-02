@@ -1,14 +1,30 @@
 /* Add global styles */
-.student-body{
-  background-color:#38acb0;
-  background-image: none;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+.student-body {
+  background-color: #223655; /* Backup color */
+  background-image: url('./assets/StuDash.jpg'); /* Path to the image file */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background */
+  background-size: cover; /* Cover the entire area of the element */
+  -webkit-backdrop-filter: blur(20px); /* Apply blur effect for supporting browsers */
+  backdrop-filter: blur(20px); /* Blur effect for modern browsers */
+  position: absolute; /* Optional: to position relative to the viewport */
+  top: 0;
+  left: 0;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
-table {
+
+.StudentDashboard {
+  font-size: 52px; 
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+  font-weight: bold;
+  color: #d6dbe0; 
+  padding: 50px 0 30px 0; 
+  width: 100%; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+}
+
+.timetable {
   margin-left: auto;
   margin-right: auto;
   border-collapse: collapse; /* Ensure the borders between cells are not doubled */
@@ -56,34 +72,36 @@ table th {
   width: 100%;
  
 }
-
-.sectionPolls,.sectionEvents {
+/* Styles for panes with white background and opacity */
+.sectionPolls, .sectionEvents {
   flex-basis: 45%; /* Adjust the width of each section */
   border: 1px solid #ccc;
   padding: 15px; /* Padding inside each section */
   border-radius: 10px; /* Rounded corners for sections */
-  background-color: rgb(65, 133, 115);
+  background-color: rgba(255, 255, 255, 0.5); /* White background with 0.5 opacity */
 }
 
-.sectionPolls ol {
-  padding-left: 10px; /* Add left padding to the ordered list */
-  list-style-position:outside; /* Ensures numbers are aligned with content */
+/* Styles for titles within the panes */
+.sectionPolls h2, .sectionEvents h2 {
+  color:  #223655; /* Set the color of titles */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
+  margin-bottom: 10px; /* Space below the title */
 }
 
-/* Style for buttons in lists with added spacing, thicker borders, and rounded corners */
-.sectionPolls ol li button {
-  margin: 10px; /* Adds space around each button */
-  border: 2px solid #000; /* Thicker borders for buttons */
-  border-radius: 8px; /* Rounded corners for buttons */
-  padding: 5px 10px; /* Padding inside buttons */
-  background-color: #3c94cb; /* Light background for buttons */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth transition for background color */
- 
+/* Update the background color for list items to maintain readability against white background */
+.sectionEvents ol li, .sectionPolls ol li {
+  border: 2px solid #4CAF50; /* Maintain the green border */
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 10px; /* Space between each list item */
+  padding: 10px; /* Padding inside each list item */
+  background-color: #f0f0f0; /* Light grey background to enhance text visibility */
+  list-style-type: none; /* Removes default list item bullets */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-.sectionPolls ol li button:hover {
-  background-color: #4935e0; /* Change background on hover */
+/* Hover effect for list items, adjusted for new background */
+.sectionEvents ol li:hover, .sectionPolls ol li:hover {
+  background-color: #e0e0e0; /* Slightly darker grey on hover */
 }
 
 .separator {
@@ -116,3 +134,4 @@ table th {
 .sectionEvents ol {
   padding-left: 0; /* Removes padding on the left side of the list */
 }
+
