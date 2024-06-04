@@ -1,5 +1,5 @@
 const express = require('express');
-const { exec } = require('child_process');
+
 const mysql = require('mysql2/promise');
 const cors = require('cors');
 const fs = require('fs').promises;
@@ -71,26 +71,165 @@ app.post('/saveClassData', async (req, res) => {
 // API to run console.js child process which executes the algorithm and generates a processed timetable
 const { spawn } = require('child_process');
 
-app.post('/run-script', (req, res) => {
-  const scriptPath = path.join(__dirname, '../../frontend/src/evolutionary-timetable-scheduling-master/console.js');
 
+/*app.post('/run-script', (req, res) => {
+const scriptPath = '../frontend/src/evolutionary-timetable-scheduling-master/console.js';
   const child = spawn('node', [scriptPath]);
 
+  let stdoutData = '';
+  let stderrData = '';
+
   child.stdout.on('data', (data) => {
-    console.log(`Script output: ${data.toString()}`);
-    res.status(200).send(`Script executed successfully: ${data}`);
+    stdoutData += data.toString();
   });
 
   child.stderr.on('data', (data) => {
-    console.error(`Script stderr: ${data.toString()}`);
-    res.status(500).send(`Script stderr: ${data}`);
+    stderrData += data.toString();
   });
 
   child.on('error', (error) => {
     console.error(`Error executing script: ${error}`);
     res.status(500).send(`Error executing script: ${error}`);
   });
+
+  child.on('close', (code) => {
+    console.log(`Child process exited with code ${code}`);
+    if (code === 0) {
+      res.status(200).send(`Script executed successfully: ${stdoutData}`);
+    } else {
+      res.status(500).send(`Script failed with code ${code}: ${stderrData}`);
+    }
+  });*/
+
+
+
+
+
+app.post('/run-script', (req, res) => {
+  const {exec } = require('child_process')
+
+    // use relative path but make sure to use double back slash since a single slash is considered an escape literal
+const pythonScriptPath = "..\\frontend\\src\\evolutionary-timetable-scheduling-master\\algorithm.py";
+
+
+//Execute the python script, will wrap it inside a conditional statement when implementing so when a generate button is pressed, this algorithm is 
+//executed
+const childProcess = exec(`python ${pythonScriptPath}`, (error,stdout,stderr) => {
+    if(error){
+      console.log(`Error: ${error.message}`)
+      return
+    }
+
+    if(stderr){
+      console.log(`Python script stderr: ${stderr}`)
+      return
+    }
+
+    console.log(`Python script console log: ${stdout}`)
+})
+
+childProcess.on('error', (error) => {
+    console.error(`Error executing script : ${error.message}`)
+})
+
+
+//A rudimentary routine format
+console.log("          0/6/12/18/24 | 1/7/13/19/25 | 2/8/14/20/26  | 3/9/15/21/27 |           | 4/10/16/22/28 | 5/11/17/23/29")
+console.log("          --------------------------------------------------------------------------------------------------------")
+console.log("          8 - 9:15     | 9-15 - 10:30 | 10:30 - 11:15 | 11:15 - 1:00 |## Lunch ##| 2:30 - 3:45   | 3:45 - 5     |")
+console.log("          --------------------------------------------------------------------------------------------------------")
+const fs = require('fs');
+const samplePath = '../frontend/src/evolutionary-timetable-scheduling-master/classes/output0.json';
+const sample = JSON.parse(fs.readFileSync(samplePath, 'utf8'));
+//console.log(sample);
+
+let timetable = [[],[],[],[],[],[],[],[],[],[],
+                 [],[],[],[],[],[],[],[],[],[],
+                 [],[],[],[],[],[],[],[],[],[]];
+
+for( i = 0; i<sample.length;i++)
+{
+    const assignedTime = sample[i].Assigned_time;
+    if (!timetable[assignedTime]) {
+        // If not, create a new array for this assigned time
+        timetable[assignedTime] = [];
+    }
+   timetable[sample[i].Assigned_time].push(sample[i]); 
+}
+
+
+
+
+// Initialize an array to store the names of days
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+// Iterate over each time slot for each day
+for (let dayIndex = 0; dayIndex < days.length; dayIndex++) {
+    const day = days[dayIndex];
+    let dayTimetable = timetable.slice(dayIndex * 6, (dayIndex + 1) * 6);
+
+    // Print the name of the day
+    process.stdout.write(day + " : ");
+
+    // Iterate over each time slot for the current day
+    dayTimetable.forEach((timeSlot, index) => {
+
+        // Print the details of each class in the time slot
+        if(timeSlot.length == 0)
+        {
+            process.stdout.write("______________");
+        }
+        else{
+        timeSlot.forEach((classDetails, classIndex) => {
+            
+            process.stdout.write(`${classDetails.Subject},${classDetails.Group},${classDetails.Assigned_time} ,`);
+            if (classIndex == timeSlot.length - 1) {
+                process.stdout.write(" | "); // Separate classes within the same time slot
+            }
+        });
+        if (index < dayTimetable.length - 1) {
+            process.stdout.write(" | "); // Separate time slots within the same day
+        }
+    }
+    
+    });
+    console.log(); // Move to the next line for the next day
+
+}
+// Iterate over each time slot for each day
+
+
+
+function writeData(data, path) {
+    try {
+        // Convert data to JSON string with indentation
+        const jsonData = JSON.stringify(data, null, 4);
+
+        // Write JSON string to file, overwriting if it already exists
+        fs.writeFileSync(path, jsonData);
+        console.log('Data written successfully to', path);
+    } catch (error) {
+        // Log an error message if something goes wrong during the file write
+        console.error('Failed to write data to', path, ':', error);
+    }
+}
+
+
+const data = timetable;
+// use relative path but make sure to use double back slash since a single slash is considered an escape literal
+const path = 'my-app\\src\\evolutionary-timetable-scheduling-master\\processedTimetable.json';
+const frontendPath = '..\\frontend\\src\\evolutionary-timetable-scheduling-master\\processedTimetable.json';
+writeData(data,frontendPath);
+        // Send success response
+        res.status(200).send('Script executed successfully.');
+   
+
+    childProcess.on('error', (error) => {
+        console.error(`Error executing script : ${error.message}`);
+        res.status(500).send(`Error executing script: ${error.message}`);
+    });
 });
+
 
 
 

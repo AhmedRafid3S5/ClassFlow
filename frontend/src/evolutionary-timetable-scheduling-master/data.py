@@ -51,7 +51,7 @@ def generate_chromosome(data):
     new_data = []
 
   
-    input_file = r'frontend\src\evolutionary-timetable-scheduling-master\classes\occupancy.json'
+    input_file = r'C:\Users\Rafid\Documents\GitHub\ClassFlow\frontend\src\evolutionary-timetable-scheduling-master\classes\occupancy.json'
 
     load_occupancy_data(input_file,load_list_prof,load_list_rooms,load_list_groups)
     

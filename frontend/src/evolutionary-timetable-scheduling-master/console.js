@@ -111,7 +111,7 @@ const data = timetable;
 // use relative path but make sure to use double back slash since a single slash is considered an escape literal
 const path = 'my-app\\src\\evolutionary-timetable-scheduling-master\\processedTimetable.json';
 const frontendPath = 'frontend\\src\\evolutionary-timetable-scheduling-master\\processedTimetable.json';
-writeData(data, frontendPath);
+writeData(data,frontendPath);
 
 
 
