@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
 const fs = require('fs').promises;
+const util = require('util');
 
 const app = express();
 app.use(express.json());
@@ -62,10 +63,17 @@ app.post('/saveClassData', async (req, res) => {
 
     await pool.query(insertClassQuery, [classValues]);
     res.status(201).json({ message: 'Class data saved successfully' });
-  } catch (error) {
+
+   
+  }
+   catch (error) {
     console.error('Error saving class data:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+
+   //Create input file here............
+   createInput(req,res);
+   deleteRecords();
 });
 
 // API to run console.js child process which executes the algorithm and generates a processed timetable
@@ -101,8 +109,86 @@ const scriptPath = '../frontend/src/evolutionary-timetable-scheduling-master/con
     }
   });*/
 
+  // Classrooms object to be passed to the function
+const classrooms = {
+  "a": ["Atelje"],
+  "k": ["Kolarac"],
+  "n": ["B2-L01","B2-L02","B2-L03","B2-L04","B2-L05"],
+  "r": ["B2-301","B2-302","B2-303","B2-304","B2-305","B2-306","B2-310","B2-507","B2-508","B2-510","B3-106","B3-107","B3-105"],
+  "s": ["Studio"]
+};
+
+const writeFile = util.promisify(fs.writeFile);
+
+async function createInput(req, res) {
+  try {
+    const query = 'SELECT * FROM classes';
+    const [results] = await pool.query(query);
+
+    // Process the results to create the Classes array
+    const classes = results.map(row => ({
+      Subject: row.Subject,
+      Type: row.Type,
+      Professor: row.Professor,
+      Group: row.GroupSection ? row.GroupSection.split(',') : [],
+      Classroom: row.Classroom,
+      Length: row.Length
+    }));
+
+    // Create the final JSON object
+    const output = {
+      Classrooms: classrooms,
+      Classes: classes
+    };
 
 
+    
+     // Define the file path
+     const inputfilePath = 'C:\\Users\\Rafid\\Documents\\GitHub\\ClassFlow\\frontend\\src\\evolutionary-timetable-scheduling-master\\classes\\input0.json';
+
+     // Write the JSON object to the file
+     try {
+       // Convert data to JSON string with indentation
+       const jsonData = JSON.stringify(output, null, 4);
+ 
+       // Write JSON string to file, overwriting if it already exists
+       await writeFile(inputfilePath, jsonData);
+       console.log('Data written successfully to', inputfilePath);
+       console.log('JSON file created successfully');
+     } catch (error) {
+       // Log an error message if something goes wrong during the file write
+       console.error('Failed to write data to', inputfilePath, ':', error);
+       res.status(500).send('Error writing to file');
+       return;
+     }
+  
+  } catch (err) {
+    console.error('Error:', err);
+   
+  }
+  
+}
+
+async function deleteRecords() {
+  try {
+    // Delete all data from the classes table
+    const deleteQuery = 'DELETE FROM classes';
+    const [deleteResults] = await pool.query(deleteQuery);
+    console.log('Delete query result:', deleteResults);
+
+    // If deletion is successful
+    if (deleteResults.affectedRows > 0) {
+      console.log('All data deleted from classes table');
+      
+    } else {
+      console.log('No data deleted from classes table');
+     
+    }
+  } catch (err) {
+    console.error('Error deleting data from table:', err);
+   
+  }
+}
 
 
 app.post('/run-script', (req, res) => {
@@ -114,6 +200,9 @@ const pythonScriptPath = "..\\frontend\\src\\evolutionary-timetable-scheduling-m
 
 //Execute the python script, will wrap it inside a conditional statement when implementing so when a generate button is pressed, this algorithm is 
 //executed
+
+
+
 const childProcess = exec(`python ${pythonScriptPath}`, (error,stdout,stderr) => {
     if(error){
       console.log(`Error: ${error.message}`)
