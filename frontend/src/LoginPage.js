@@ -1,17 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-
 
 const LoginPage = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-<<<<<<< Updated upstream
-    // Implement login logic here
-    onLogin(username, password);
-=======
     try {
       const response = await axios.post('http://localhost:3000/login', { username, password });
       if (response.data.user) {
@@ -22,7 +18,12 @@ const LoginPage = ({ onLogin }) => {
           window.location.href = '/AdminDashboard'; // Adjust as needed
         } else if (role === 'student') {
           window.location.href = '/StudentDashboard'; // Adjust as needed
-        } else {
+        } 
+        else if(role == 'routineCreator'){
+          window.location.href = '/RoutineMaker';
+        }
+        
+        else {
           window.location.href = '/'; // Default or error case
         }
       } else {
@@ -33,7 +34,6 @@ const LoginPage = ({ onLogin }) => {
       setMessage(error.response ? error.response.data.message : 'Login failed');
       onLogin(false);
     }
->>>>>>> Stashed changes
   };
 
   return (
@@ -60,7 +60,8 @@ const LoginPage = ({ onLogin }) => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button  type="submit">Login</button>
+        {message && <p>{message}</p>}
       </form>
     </div>
   );

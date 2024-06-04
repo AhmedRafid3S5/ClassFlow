@@ -1,4 +1,5 @@
 const express = require('express');
+const { exec } = require('child_process');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
 const fs = require('fs').promises;
@@ -38,7 +39,7 @@ app.post('/output', async (req, res) => {
 });
 
 
-app.post('/save-class-data', (req, res) => {
+/*app.post('/save-class-data', (req, res) => {
   const data = req.body; // This is your JSON data from the client side
 
   // Write the JSON data to the specified file path
@@ -49,7 +50,48 @@ app.post('/save-class-data', (req, res) => {
       }
       res.status(200).json({ message: 'Data saved successfully' });
   });
+});*/
+
+// API endpoint to save class data
+app.post('/saveClassData', async (req, res) => {
+  try {
+    const { Classrooms, Classes } = req.body;
+
+    const insertClassQuery = 'INSERT INTO classes (Subject, Type, Professor, GroupSection, Classroom, Length) VALUES ?';
+    const classValues = Classes.map(cls => [cls.Subject, cls.Type, cls.Professor, cls.Group.join(','), cls.Classroom, cls.Length]);
+
+    await pool.query(insertClassQuery, [classValues]);
+    res.status(201).json({ message: 'Class data saved successfully' });
+  } catch (error) {
+    console.error('Error saving class data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
+
+// API to run console.js child process which executes the algorithm and generates a processed timetable
+const { spawn } = require('child_process');
+
+app.post('/run-script', (req, res) => {
+  const scriptPath = path.join(__dirname, '../../frontend/src/evolutionary-timetable-scheduling-master/console.js');
+
+  const child = spawn('node', [scriptPath]);
+
+  child.stdout.on('data', (data) => {
+    console.log(`Script output: ${data.toString()}`);
+    res.status(200).send(`Script executed successfully: ${data}`);
+  });
+
+  child.stderr.on('data', (data) => {
+    console.error(`Script stderr: ${data.toString()}`);
+    res.status(500).send(`Script stderr: ${data}`);
+  });
+
+  child.on('error', (error) => {
+    console.error(`Error executing script: ${error}`);
+    res.status(500).send(`Error executing script: ${error}`);
+  });
+});
+
 
 
 
@@ -140,6 +182,31 @@ app.get('/infoCSE', async (req, res) => {
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Login route
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password are required" });
+  }
+
+  try {
+    const query = 'SELECT id, username, role, department, batch FROM users WHERE username = ? AND password = ?';  //SELECT * FROM users WHERE username = ? AND password = ?
+    const [results] = await pool.query(query, [username, password]);
+
+    if (results.length > 0) {
+      res.json({ 
+        message: "Login successful",
+        user: results[0] //added 
+      });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error('Error executing login query:', error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

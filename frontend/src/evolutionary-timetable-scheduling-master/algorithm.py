@@ -6,9 +6,9 @@ from copy import deepcopy
 
 max_generations = 5000
 num_runs = 1
-input_file = r'my-app\src\evolutionary-timetable-scheduling-master\classes\input0.json'
-output_file = r'my-app\src\evolutionary-timetable-scheduling-master\classes\output0.json'
-occupancy_file = r'my-app\src\evolutionary-timetable-scheduling-master\classes\occupancy.json'
+input_file = r'frontend\src\evolutionary-timetable-scheduling-master\classes\input0.json'
+output_file = r'frontend\src\evolutionary-timetable-scheduling-master\classes\output0.json'
+occupancy_file = r'frontend\src\evolutionary-timetable-scheduling-master\classes\occupancy.json'
 
 
 

@@ -2,7 +2,7 @@
 const {exec } = require('child_process')
 
 // use relative path but make sure to use double back slash since a single slash is considered an escape literal
-const pythonScriptPath = "my-app\\src\\evolutionary-timetable-scheduling-master\\algorithm.py";
+const pythonScriptPath = "frontend\\src\\evolutionary-timetable-scheduling-master\\algorithm.py";
 
 
 //Execute the python script, will wrap it inside a conditional statement when implementing so when a generate button is pressed, this algorithm is 
@@ -110,7 +110,8 @@ function writeData(data, path) {
 const data = timetable;
 // use relative path but make sure to use double back slash since a single slash is considered an escape literal
 const path = 'my-app\\src\\evolutionary-timetable-scheduling-master\\processedTimetable.json';
-writeData(data, path);
+const frontendPath = 'frontend\\src\\evolutionary-timetable-scheduling-master\\processedTimetable.json';
+writeData(data, frontendPath);
 
 
 

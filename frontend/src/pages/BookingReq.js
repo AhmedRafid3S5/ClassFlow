@@ -22,8 +22,8 @@ function BookingRequests() {
               syllabus)
             </td>
             <td >
-              <button>Approve</button>
-              <button>Decline</button>
+              <button className='AdBut'>Approve</button>
+              <button className='AdBut'>Decline</button>
             </td>
           </tr>
           <tr>
@@ -31,8 +31,8 @@ function BookingRequests() {
             <td>210041219</td>
             <td>Room needed for CP class</td>
             <td >
-              <button>Approve</button>
-              <button>Decline</button>
+              <button className='AdBut'>Approve</button>
+              <button className='AdBut'>Decline</button>
             </td>
           </tr>
           <tr>
@@ -40,8 +40,8 @@ function BookingRequests() {
             <td>210021304</td>
             <td>Room Needed for Circuit Workshop</td>
             <td>
-              <button>Approve</button>
-              <button>Decline</button>
+              <button className='AdBut'>Approve</button>
+              <button className='AdBut'>Decline</button>
             </td>
           </tr>
         </tbody>

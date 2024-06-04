@@ -14,12 +14,14 @@ function RoutineMaker() {
    
 
     const [data, setData] = useState({
+        classrooms: {},
         semesters: [],
         professors: [],
         groups: [],
         types: ['L', 'P'], // Assuming these are constant
         subjects: [],
     });
+    
     const [selectedSemester, setSelectedSemester] = useState('');
     const [formData, setFormData] = useState({
         subject: '',
@@ -32,16 +34,20 @@ function RoutineMaker() {
     const [classesList, setClassesList] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/infoCSE').then(response => {
-            setData({
-                ...data,
-                semesters: response.data.Semesters,
-                professors: response.data.Professors,
-                groups: response.data.Group,
-                subjects: response.data.Courses
-            });
-        });
+        axios.get('http://localhost:3000/infoCSE')
+            .then(response => {
+                setData({
+                    classrooms: response.data.Classrooms,
+                    semesters: response.data.Semesters,
+                    professors: response.data.Professors,
+                    groups: response.data.Group,
+                    types: data.types, // Maintain the constant types
+                    subjects: response.data.Courses
+                });
+            })
+            .catch(error => console.error('Failed to fetch data', error));
     }, []);
+    
 
     const handleSemesterChange = (event) => {
         setSelectedSemester(event.target.value);
@@ -83,17 +89,30 @@ function RoutineMaker() {
         setClassesList(prev => prev.filter((_, i) => i !== index));
     };
 
-  
-
-    const handleDone = () => {
+    const sampleClassList = [
+        { "Subject": "CSE4406", "Type": "L", "Professor": "Sakhawat", "Group": ["Sec1","Sec2"], "Classroom": "r", "Length": "2" },
+        { "Subject": "CSE4406", "Type": "L", "Professor": "Sakhawat", "Group": ["Sec2"], "Classroom": "r", "Length": "2" },
+        { "Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec1"], "Classroom": "r", "Length": "1" },
+        { "Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec2"], "Classroom": "r", "Length": "1" }
+      ];
+      
+      const handleDone = () => {
         const outputData = {
-            Classrooms: data.classrooms,
-            Classes: classesList
+          Classrooms: data.classrooms,
+          Classes: classesList
         };
-        axios.post(`http://localhost:3000/save-class-data`, outputData)
-            .then(response => console.log('Data saved successfully'))
-            .catch(error => console.error('Failed to save data', error));
+      
+        axios.post('http://localhost:3000/saveClassData', outputData)
+          .then(response => console.log('Data saved successfully'))
+          .catch(error => console.error('Failed to save data', error));
+      };
+
+      const handleGenerateRoutine = () => {
+        axios.post('http://localhost:3000/run-script')
+          .then(response => console.log('Script executed successfully:', response.data))
+          .catch(error => console.error('Failed to execute script:', error));
     };
+
 
 
 
@@ -113,6 +132,7 @@ function RoutineMaker() {
                     ))}
                 </select>
                 <select value={formData.type} name="type" onChange={handleChange} disabled={!selectedSemester}>
+                    <option key = "N/A" value = "N/A">N/A</option>
                     {data.types.map(type => (
                         <option key={type} value={type}>{type}</option>
                     ))}
@@ -134,6 +154,7 @@ function RoutineMaker() {
             </div>
             <div>
                 <select value={formData.duration} name="duration" onChange={handleChange} disabled={!selectedSemester}>
+                    <option value="0">N/A</option>
                     <option value="1">1hr 15 min</option>
                     <option value="2">2hr 30 min</option>
                 </select>
@@ -144,6 +165,7 @@ function RoutineMaker() {
             <div>
                 <button onClick={handleAddClass} disabled={!selectedSemester}>Add</button>
                 <button onClick={handleDone} disabled={!classesList.length}>Done</button>
+                <button onClick={handleGenerateRoutine} disabled={!classesList.length}>Generate Routine</button>
             </div>
             <ol>
                 {classesList.map((cls, index) => (

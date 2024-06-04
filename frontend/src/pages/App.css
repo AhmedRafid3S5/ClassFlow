@@ -100,31 +100,30 @@ th, td {
   border-bottom: 1px solid #faf9f9; 
 }
 
-button {
+.AdBut {
   border-radius: 12px;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  transition: border-color 0.25s;
+  font-family: inherit; /* Ensures the button text matches the rest of the application's typography */
+  transition: background-color 0.25s; /* Smooth transition for background color on hover */
   margin-right: 10px; 
-  width: 100px; 
-  border: none;
-  cursor: pointer;
-  background-color: #104467; 
-  color: white;
-  display: inline-block; 
+  width: 100px; /* Fixed width for uniform appearance */
+  border: none; /* No border for a cleaner look */
+  cursor: pointer; /* Indicates the button is clickable */
+  background-color: #104467; /* Dark navy blue background */
+  color: white; /* White text for high contrast */
+  display: inline-block; /* Allows buttons to sit inline with other elements */
 }
 
-
-
-button:last-child {
-  margin-right: 0; 
+.AdBut:last-child {
+  margin-right: 0; /* Removes the margin on the right for the last button in a series */
 }
 
-button:hover {
-  background-color: #37a2b7ae; 
+.AdBut:hover {
+  background-color: #37a2b7ae; /* Lighter blue on hover with transparency */
 }
+
 
 
 .space-buttons button:last-child {

@@ -13,17 +13,14 @@ const slots = ["8:00AM-9:15AM", "9:15AM-10:30AM", "10:30AM-11:45AM", "11:45AM-1:
 function classInfo(timetable, idx) {
   var info = [];
   for (var i = 0; i < timetable[idx].length; i++) {
-    var str = timetable[idx][i].Subject + " " + timetable[idx][i].Assigned_classroom + " " + timetable[idx][i].Group[0] + "\n";
+    var str = timetable[idx][i].Subject + " " + timetable[idx][i].Assigned_classroom + " " + timetable[idx][i].Group[0] + (timetable[idx][i].Length === '1' ? "\n" : "(2.5Hr)"+"\n");
     info.push(str);
   }
   return info;
 }
 
-const routineChanges = [
-  "Change in Monday schedule",
-  "Room change for Tuesday's class",
-  "Switching class timings on Wednesday"
-];
+
+
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -201,7 +198,7 @@ function Student() {
         </select>
       </div>
 
-      <table id="timetable">
+      <table id="timetable" className='timetable'>
         <thead>
           <tr>
             <th>Day</th>
@@ -226,7 +223,7 @@ function Student() {
         <div className="sectionPolls" ref={sectionRoutineRef}>
           <h2>Student Polls</h2>
           {/*openGoogleForms only for CRS*/}
-          {<button 
+          {<button className='PollButton'
           title ="Copy paste form link here after creating a form"
           onClick={openGoogleForms}>Create Forms</button>
            
