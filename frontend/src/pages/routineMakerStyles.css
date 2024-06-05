@@ -161,4 +161,31 @@ input {
 .dropdown option:last-child {
     border-bottom: none; /* Remove the line for the last item */
 }
+
+
+.teacher-requests {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.teacher-requests ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.request-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #333;
+}
+
+.request-item:last-child {
+    border-bottom: none;
+}
+
   

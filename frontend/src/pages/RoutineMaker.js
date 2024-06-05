@@ -117,6 +117,22 @@ function RoutineMaker() {
             .catch(error => console.error('Failed to execute script:', error));
     };
 
+    const [teacherRequests, setTeacherRequests] = useState([]);
+
+    useEffect(() => {
+        // Fetch teacher requests from the backend
+        const fetchTeacherRequests = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/teacher-requests');
+                setTeacherRequests(response.data);
+            } catch (error) {
+                console.error('Error fetching teacher requests:', error);
+            }
+        };
+
+        fetchTeacherRequests();
+    }, []);
+
     //functions and utilities for table that is generated
 const timetable = require('../evolutionary-timetable-scheduling-master/processedTimetable.json');
 const occupancyList = require('../evolutionary-timetable-scheduling-master/classes/occupancy.json');
@@ -134,6 +150,8 @@ const handleSaveOccupancy = () => {
 const updateProfessorAvailability = (professorName, newAvailability) => {
   occupancyList.Professors[professorName] = newAvailability;
 };
+
+
 
 
 
@@ -246,7 +264,20 @@ function classInfo(timetable, idx) {
         </tbody>
       </table>)}
             </div>
-
+            <h2 className="routine-header">Teacher Requests</h2>
+            <div className="teacher-requests">
+                {teacherRequests.length > 0 ? (
+                    <ul>
+                        {teacherRequests.map((request, index) => (
+                            <li key={index} className="request-item">
+                                {request.name}: {request.request}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No requests found</p>
+                )}
+            </div>
             <div>
             {Object.keys(occupancyList.Professors).map(professorName => (
           <TeacherAvailability

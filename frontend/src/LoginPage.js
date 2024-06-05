@@ -1,3 +1,4 @@
+// LoginPage.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -11,31 +12,29 @@ const LoginPage = ({ onLogin }) => {
     try {
       const response = await axios.post('http://localhost:3000/login', { username, password });
       if (response.data.user) {
-        const { role } = response.data.user;
-        onLogin(true);  // Trigger any state update or context update for logged-in user
+        const { username, role } = response.data.user; // Extract username from response
+        onLogin(true, username); // Pass the extracted username to the onLogin callback
         // Redirect based on role
         if (role === 'admin') {
-          window.location.href = '/AdminDashboard'; // Adjust as needed
+          window.location.href = '/AdminDashboard';
+        } else if (role === 'student') {
+          window.location.href = '/StudentDashboard';
+        } else if (role === 'routineCreator') {
+          window.location.href = '/RoutineMaker';
         } else if (role === 'cr') {
           window.location.href = '/CR-Dashboard'; // Adjust as needed
-        } 
-        else if (role === 'student'){
-          window.location.href = '/StudentDashboard'; // Adjust as needed
-        }
-        else if(role == 'routineCreator'){
-          window.location.href = '/RoutineMaker';
-        }
-        
-        else {
-          window.location.href = '/'; // Default or error case
+        } else if (role === 'teacher') {
+          window.location.href = '/TeacherDashboard';
+        } else {
+          window.location.href = '/';
         }
       } else {
         setMessage('Login failed');
-        onLogin(false);
+        onLogin(false, '');
       }
     } catch (error) {
       setMessage(error.response ? error.response.data.message : 'Login failed');
-      onLogin(false);
+      onLogin(false, '');
     }
   };
 
@@ -63,7 +62,7 @@ const LoginPage = ({ onLogin }) => {
             required
           />
         </div>
-        <button  type="submit">Login</button>
+        <button type="submit">Login</button>
         {message && <p>{message}</p>}
       </form>
     </div>
@@ -71,3 +70,6 @@ const LoginPage = ({ onLogin }) => {
 };
 
 export default LoginPage;
+
+
+

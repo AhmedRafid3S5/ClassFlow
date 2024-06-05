@@ -9,6 +9,7 @@ import PrivateRoutes from './utils/PrivateRoutes';
 import RoutineMaker from './pages/RoutineMaker';
 import Admin from './pages/Admin';
 import NormalStudent from './pages/normalStudent';
+import Teacher from './pages/Teacher';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
                <Route element={<NormalStudent/>} path="/StudentDashboard"/>
                <Route element={<RoutineMaker/>} path="/RoutineMaker"/>
                <Route element={<Admin/>} path="/AdminDashboard"/>
-
+               <Route element={<Teacher/>} path="TeacherDashboard"/>
                {/*Nest other routes & components here*/}
                
           </Route>

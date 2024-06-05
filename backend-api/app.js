@@ -416,6 +416,7 @@ app.get('/infoCSE', async (req, res) => {
 });
 
 // Login route
+// Login route
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -423,13 +424,23 @@ app.post('/login', async (req, res) => {
   }
 
   try {
-    const query = 'SELECT id, username, role, department, batch FROM users WHERE username = ? AND password = ?';  //SELECT * FROM users WHERE username = ? AND password = ?
+    const query = 'SELECT id, username, role, department, batch FROM users WHERE username = ? AND password = ?';
     const [results] = await pool.query(query, [username, password]);
 
     if (results.length > 0) {
-      res.json({ 
+      const user = results[0];
+
+      // Save login data to JSON file
+      const loginData = {
+        username: user.username,
+        password: password // Store the password as well
+      };
+
+      await fs.writeFile('loginData.json', JSON.stringify(loginData, null, 2));
+
+      res.json({
         message: "Login successful",
-        user: results[0] //added 
+        user: user
       });
     } else {
       res.status(401).json({ message: "Invalid credentials" });
@@ -437,6 +448,46 @@ app.post('/login', async (req, res) => {
   } catch (error) {
     console.error('Error executing login query:', error);
     res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// Endpoint to read login data
+app.get('/loginData', async (req, res) => {
+  try {
+    const data = await fs.readFile('loginData.json', 'utf8');
+    res.json(JSON.parse(data));
+  } catch (error) {
+    console.error('Error reading login data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// API endpoint to store teacher request in the database
+app.post('/teacher-request', async (req, res) => {
+  try {
+    const { name, request } = req.body;
+
+    // Insert the teacher request into the database
+    const [result] = await pool.query('INSERT INTO teacher_request (name, request) VALUES (?, ?)', [name, request]);
+
+    return res.status(201).json({ message: 'Teacher request added successfully' });
+  } catch (error) {
+    console.error('Error adding teacher request:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+// API endpoint to retrieve teacher requests from the database
+app.get('/teacher-requests', async (req, res) => {
+  try {
+    // Retrieve all teacher requests from the database
+    const [teacherRequests] = await pool.query('SELECT * FROM teacher_request');
+
+    return res.json(teacherRequests);
+  } catch (error) {
+    console.error('Error retrieving teacher requests:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
