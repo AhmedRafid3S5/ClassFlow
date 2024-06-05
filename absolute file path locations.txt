@@ -1,0 +1,12 @@
+backend-api app.js
+line:121,301,
+
+in folder frontend>evolutionary-timetable folder> algorithm.py
+line 9,10,11
+
+data.py
+line 54
+
+Maintain the exact string format in each location , just change them to your absolute file paths
+
+
