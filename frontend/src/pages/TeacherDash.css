@@ -1,0 +1,101 @@
+.student-body {
+    background-color: #223655; /* Backup color */
+    background-image: url('../assets/StuDash.jpg'); /* Path to the image file */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background */
+    background-size: cover; /* Cover the entire area of the element */
+    -webkit-backdrop-filter: blur(20px); /* Apply blur effect for supporting browsers */
+    backdrop-filter: blur(20px); /* Blur effect for modern browsers */
+    position: absolute; /* Optional: to position relative to the viewport */
+    top: 0;
+    left: 0;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+  }
+  .timetable {
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .timetable th,
+  .timetable td {
+    width: 200px; /* Adjust width to make cells square-sized */
+    height: 100px; /* Same as width to make cells square */
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 0; /* Remove padding to make cells more compact */
+    border-radius: 10px;
+  }
+  
+  .timetable th {
+    background-color: #42658a;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .timetable td {
+    background-color: #f0f0f04a;
+    
+  }
+  
+  .timetable tbody td:first-child,
+  .timetable thead th:first-child {
+    border-left: none; /* No left border for first column */
+  }
+  
+  .timetable tbody td:last-child,
+  .timetable thead th:last-child {
+    border-right: none; /* No right border for last column */
+  }
+  
+  .timetable tbody tr:last-child td {
+    border-bottom: none; /* No bottom border for last row */
+  }
+  
+  .titlepane {
+    background-color: rgba(255, 255, 255, 0.35); /* White with opacity 0.2 */
+    padding: 10px;
+    margin-bottom: 20px; /* Add gap between elements */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    position: center; 
+  }
+  .PollButton {
+    background-color: #10467ff0; /* Button background color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .PollButton:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .PollButton:disabled {
+    background-color: #d3d3d3; /* Disabled button background color */
+    color: #a9a9a9; /* Disabled button text color */
+    cursor: not-allowed; /* Cursor style for disabled button */
+  }
+  .timetable-title {
+    font-size: 36px; /* Increase font size */
+    color: #fff5f5; /* Text color */
+    text-align: center; /* Center align the text */
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif; /* Rounded font */
+    font-weight: bold; /* Make the text bold */
+    padding: 20px 0; /* Add padding above and below the text */
+    background: linear-gradient(to right, #e0eafc, #cfdef37d); /* Gradient background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    margin-bottom: 20px; /* Space below the title */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Drop shadow for text */
+    border: 2px solid #f3f3f3; 
+  }
+  
+  .dropshadowing{
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  }

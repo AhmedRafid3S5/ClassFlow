@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Import axios for making HTTP requests
-
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+import './TeacherDash.css';
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 const slots = ["8:00AM-9:15AM", "9:15AM-10:30AM", "10:30AM-11:45AM", "11:45AM-1:00PM", "2:30PM-3:45PM", "3:45PM-5:00PM"];
 const timetable = require('../evolutionary-timetable-scheduling-master/processedTimetable.json');
 
@@ -26,6 +26,16 @@ const Teacher = () => {
     }
     return info.join(''); // Join the array into a string
 }
+
+useEffect(() => {
+  // When the Student component mounts
+  document.body.classList.add('student-body');
+
+  // Cleanup function when the component unmounts
+  return () => {
+    document.body.classList.remove('student-body');
+  };
+}, []);
 
   const handleRoutineChangeRequest = () => {
     // Send the routine change request to the backend
@@ -58,8 +68,9 @@ const Teacher = () => {
 
   return (
     <div className="teacher-page">
-      <h1>Welcome, {loggedInUser}!</h1>
-      <h2>Your Timetable</h2>
+      <h1 class="timetable-title">Welcome, {loggedInUser}!</h1>
+      <h2 class="dropshadowing">Your Timetable</h2>
+      <div className='titlepane'>
       <table id="timetable" className='timetable'>
         <thead>
           <tr>
@@ -80,15 +91,16 @@ const Teacher = () => {
           ))}
         </tbody>
       </table>
-      <div>
-        <h2>Routine Change Request</h2>
+      </div>
+      <div className='titlepane'>
+        <h2 class="dropshadowing">Routine Change Request</h2>
         <input
           type="text"
           value={routineChangeRequest}
           onChange={(e) => setRoutineChangeRequest(e.target.value)}
           placeholder="Enter your routine change request"
         />
-        <button onClick={handleRoutineChangeRequest}>Submit</button>
+        <button className='PollButton' onClick={handleRoutineChangeRequest}>Submit</button>
         {notification && <div className="notification">{notification}</div>}
       </div>
     </div>

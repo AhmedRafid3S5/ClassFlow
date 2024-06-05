@@ -44,6 +44,20 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   backdrop-filter: blur(8px); /* This will give a frosted glass effect to the container */
+  text-align: center; /* Center the text and image */
+}
+
+form {
+  width: 100%;
+}
+
+h2 {
+  margin-bottom: 20px; /* Add some space below the logo */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Style for the login title */

@@ -161,15 +161,20 @@ function Student() {
             />
           </label>
         </div>
-        <button type="submit">Create Poll</button>
+        <button className='PollButton' type="submit">Create Poll</button>
       </form>);
     }
   
 
   return (
     <div className="Student">
+       <div className="titlepanemain">
+          <div className='element1'></div>
      <h1 className="StudentDashboard">CR's Dashboard</h1>
+     </div>
       <div>
+      <div className='element1'></div>
+      <div className="titlepane">
         <select id="semester">
           {/* Options for semester dropdown */}
           <option value="">Select Semester</option>
@@ -197,7 +202,8 @@ function Student() {
           {/* Populate options dynamically based on available departments */}
         </select>
       </div>
-
+      </div>
+      <div className="titlepane">
       <table id="timetable" className='timetable'>
         <thead>
           <tr>
@@ -218,22 +224,25 @@ function Student() {
           ))}
         </tbody>
       </table>
-
+</div>
       <div className="section-container">
         <div className="sectionPolls" ref={sectionRoutineRef}>
           <h2>Student Polls</h2>
           {/*openGoogleForms only for CRS*/}
+          <div className='element1'></div>
           {<button className='PollButton'
           title ="Copy paste form link here after creating a form"
           onClick={openGoogleForms}>Create Forms</button>
            
         }
+        <div className='element1'></div>
+       
         {createPollInterface()}
         <div> 
           <ol>
           {polls.map((poll) => (
             <li>
-        <button key={poll.poll_id} onClick={() => window.open(poll.link, '_blank')}>
+        <button className='PollButton' key={poll.poll_id} onClick={() => window.open(poll.link, '_blank')}>
           {poll.title}
         </button>
         </li>

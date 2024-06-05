@@ -1,15 +1,40 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function StudentRequests() {
+  const [teacherRequests, setTeacherRequests] = useState([]);
+
+    useEffect(() => {
+        // Fetch teacher requests from the backend
+        const fetchTeacherRequests = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/teacher-requests');
+                setTeacherRequests(response.data);
+            } catch (error) {
+                console.error('Error fetching teacher requests:', error);
+            }
+        };
+
+        fetchTeacherRequests();
+    }, []);
+
   return (
     <div className="pane">
       <h2>Teacher Requests</h2>
-      {/* Simulate some data with longer lines */}
-      <ul>
-        <li className="list-item">Request for cancellation of class due to unforeseen circumstances.</li>
-        <li className="list-item">Need special permission for accessing the lab after hours for critical project work.</li>
-        <li className="list-item">Request for additional library resources on machine learning and data analytics for upcoming thesis.</li>
-      </ul>
+  
+                {teacherRequests.length > 0 ? (
+                    <ul>
+                        {teacherRequests.map((request, index) => (
+                            <li key={index} className="request-item">
+                                {request.name}: {request.request}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No requests found</p>
+                )}
+            
     </div>
   );
 }

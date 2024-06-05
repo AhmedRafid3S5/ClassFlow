@@ -41,7 +41,7 @@ const LoginPage = ({ onLogin }) => {
   return (
     <div className="login-container">
       <form onSubmit={handleLogin}>
-        <h2>ClassFlow</h2>
+      <img src="/ClassFlow-Logo.png" alt="ClassFlow Logo" style={{ width: '500px' }} />
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input

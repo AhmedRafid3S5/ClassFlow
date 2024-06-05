@@ -138,8 +138,12 @@ function NormalStudent() {
 
   return (
     <div className="Student">
-     <h1 className="StudentDashboard">Student Dashboard</h1>
+       <div className="titlepanemain">
+    <h1 className="StudentDashboard">Student Dashboard</h1>
+    </div>
       <div>
+        <div className='element1'></div>
+      <div className="titlepane">
         <select id="semester">
           {/* Options for semester dropdown */}
           <option value="">Select Semester</option>
@@ -166,8 +170,9 @@ function NormalStudent() {
           <option value="">TVE</option>
           {/* Populate options dynamically based on available departments */}
         </select>
+        </div>
       </div>
-
+      <div className="titlepane">
       <table id="timetable" className='timetable'>
         <thead>
           <tr>
@@ -188,7 +193,7 @@ function NormalStudent() {
           ))}
         </tbody>
       </table>
-
+</div>
       <div className="section-container">
         <div className="sectionPolls" ref={sectionRoutineRef}>
           <h2>Student Polls</h2>
