@@ -16,9 +16,12 @@ const LoginPage = ({ onLogin }) => {
         // Redirect based on role
         if (role === 'admin') {
           window.location.href = '/AdminDashboard'; // Adjust as needed
-        } else if (role === 'student') {
-          window.location.href = '/StudentDashboard'; // Adjust as needed
+        } else if (role === 'cr') {
+          window.location.href = '/CR-Dashboard'; // Adjust as needed
         } 
+        else if (role === 'student'){
+          window.location.href = '/StudentDashboard'; // Adjust as needed
+        }
         else if(role == 'routineCreator'){
           window.location.href = '/RoutineMaker';
         }

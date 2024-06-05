@@ -8,6 +8,7 @@ import Student from './pages/Student';
 import PrivateRoutes from './utils/PrivateRoutes';
 import RoutineMaker from './pages/RoutineMaker';
 import Admin from './pages/Admin';
+import NormalStudent from './pages/normalStudent';
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
        <Router>
         <Routes>
           <Route element={<PrivateRoutes/>}>
-               <Route element={<Student/>} path="/StudentDashboard"/>
+               <Route element={<Student/>} path="/CR-Dashboard"/>
+               <Route element={<NormalStudent/>} path="/StudentDashboard"/>
                <Route element={<RoutineMaker/>} path="/RoutineMaker"/>
                <Route element={<Admin/>} path="/AdminDashboard"/>
 

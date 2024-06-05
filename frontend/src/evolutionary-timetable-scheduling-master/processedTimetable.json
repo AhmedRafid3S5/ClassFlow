@@ -1,10 +1,13 @@
 [
     [],
+    [],
+    [],
+    [],
     [
         {
-            "Subject": "CSE4403",
+            "Subject": "EEE4483",
             "Type": "L",
-            "Professor": "MM",
+            "Professor": "SH",
             "Group": [
                 "Sec1"
             ],
@@ -24,67 +27,134 @@
                 "B3-105"
             ],
             "Length": 1,
-            "Assigned_classroom": "B2-302",
-            "Assigned_time": 1
+            "Assigned_classroom": "B2-305",
+            "Assigned_time": 4
         }
     ],
+    [],
+    [],
+    [],
     [
         {
-            "Subject": "CSE4402",
-            "Type": "P",
-            "Professor": "IT",
+            "Subject": "MATH4441",
+            "Type": "L",
+            "Professor": "MSS",
             "Group": [
                 "Sec1"
             ],
             "Classroom": [
-                "B2-L01",
-                "B2-L02",
-                "B2-L03",
-                "B2-L04",
-                "B2-L05"
+                "B2-301",
+                "B2-302",
+                "B2-303",
+                "B2-304",
+                "B2-305",
+                "B2-306",
+                "B2-310",
+                "B2-507",
+                "B2-508",
+                "B2-510",
+                "B3-106",
+                "B3-107",
+                "B3-105"
             ],
-            "Length": 2,
-            "Assigned_classroom": "B2-L03",
-            "Assigned_time": 2
+            "Length": 1,
+            "Assigned_classroom": "B3-105",
+            "Assigned_time": 8
+        }
+    ],
+    [
+        {
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": [
+                "B2-301",
+                "B2-302",
+                "B2-303",
+                "B2-304",
+                "B2-305",
+                "B2-306",
+                "B2-310",
+                "B2-507",
+                "B2-508",
+                "B2-510",
+                "B3-106",
+                "B3-107",
+                "B3-105"
+            ],
+            "Length": 1,
+            "Assigned_classroom": "B2-510",
+            "Assigned_time": 9
         }
     ],
     [],
     [],
-    [],
     [
         {
-            "Subject": "CSE4402",
-            "Type": "P",
-            "Professor": "IT",
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
             "Group": [
                 "Sec2"
             ],
             "Classroom": [
-                "B2-L01",
-                "B2-L02",
-                "B2-L03",
-                "B2-L04",
-                "B2-L05"
+                "B2-301",
+                "B2-302",
+                "B2-303",
+                "B2-304",
+                "B2-305",
+                "B2-306",
+                "B2-310",
+                "B2-507",
+                "B2-508",
+                "B2-510",
+                "B3-106",
+                "B3-107",
+                "B3-105"
             ],
-            "Length": 2,
-            "Assigned_classroom": "B2-L03",
-            "Assigned_time": 6
+            "Length": 1,
+            "Assigned_classroom": "B3-106",
+            "Assigned_time": 12
+        }
+    ],
+    [
+        {
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
+            "Group": [
+                "Sec2"
+            ],
+            "Classroom": [
+                "B2-301",
+                "B2-302",
+                "B2-303",
+                "B2-304",
+                "B2-305",
+                "B2-306",
+                "B2-310",
+                "B2-507",
+                "B2-508",
+                "B2-510",
+                "B3-106",
+                "B3-107",
+                "B3-105"
+            ],
+            "Length": 1,
+            "Assigned_classroom": "B2-305",
+            "Assigned_time": 13
         }
     ],
     [],
     [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
     [
         {
-            "Subject": "CSE4403",
+            "Subject": "EEE4483",
             "Type": "L",
-            "Professor": "MM",
+            "Professor": "SH",
             "Group": [
                 "Sec1"
             ],
@@ -104,21 +174,19 @@
                 "B3-105"
             ],
             "Length": 1,
-            "Assigned_classroom": "B2-306",
+            "Assigned_classroom": "B2-507",
             "Assigned_time": 16
         }
     ],
     [],
     [],
-    [],
-    [],
     [
         {
-            "Subject": "CSE4403",
+            "Subject": "EEE4483",
             "Type": "L",
-            "Professor": "MM",
+            "Professor": "SMA",
             "Group": [
-                "Sec2"
+                "Sec1"
             ],
             "Classroom": [
                 "B2-301",
@@ -137,21 +205,45 @@
             ],
             "Length": 1,
             "Assigned_classroom": "B2-310",
-            "Assigned_time": 21
+            "Assigned_time": 19
+        }
+    ],
+    [
+        {
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": [
+                "B2-301",
+                "B2-302",
+                "B2-303",
+                "B2-304",
+                "B2-305",
+                "B2-306",
+                "B2-310",
+                "B2-507",
+                "B2-508",
+                "B2-510",
+                "B3-106",
+                "B3-107",
+                "B3-105"
+            ],
+            "Length": 1,
+            "Assigned_classroom": "B3-107",
+            "Assigned_time": 20
         }
     ],
     [],
-    [],
-    [],
-    [],
-    [],
     [
         {
-            "Subject": "CSE4403",
+            "Subject": "MATH4441",
             "Type": "L",
-            "Professor": "MM",
+            "Professor": "MSS",
             "Group": [
-                "Sec2"
+                "Sec1"
             ],
             "Classroom": [
                 "B2-301",
@@ -170,9 +262,41 @@
             ],
             "Length": 1,
             "Assigned_classroom": "B2-303",
-            "Assigned_time": 27
+            "Assigned_time": 22
         }
     ],
+    [],
+    [
+        {
+            "Subject": "EEE4483",
+            "Type": "L",
+            "Professor": "SMA",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": [
+                "B2-301",
+                "B2-302",
+                "B2-303",
+                "B2-304",
+                "B2-305",
+                "B2-306",
+                "B2-310",
+                "B2-507",
+                "B2-508",
+                "B2-510",
+                "B3-106",
+                "B3-107",
+                "B3-105"
+            ],
+            "Length": 1,
+            "Assigned_classroom": "B3-106",
+            "Assigned_time": 24
+        }
+    ],
+    [],
+    [],
+    [],
     [],
     []
 ]

@@ -12,41 +12,44 @@ const TableComponent = ({ data, setData }) => {
   };
 
   return (
-    <table border="1" style={{ borderCollapse: 'collapse', width: '100%' }}>
-      <thead>
+    <table className="styled-table" style={{ width: '100%' }}>
+    <thead>
         <tr>
-          <th></th>
-          {slots.map(slot => (
-            <th key={slot}>{slot}</th>
-          ))}
+            <th></th>
+            {slots.map(slot => (
+                <th key={slot}>{slot}</th>
+            ))}
         </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
         {days.map((day, rowIndex) => (
-          <tr key={day}>
-            <td>{day}</td>
-            {slots.map((slot, colIndex) => {
-              const index = rowIndex * slots.length + colIndex;
-              const cellStyle = {
-                backgroundColor: data[index] > 0 ? 'grey' : 'white',
-                cursor: 'pointer',
-                textAlign: 'center',
-                padding: '10px',
-              };
-              return (
-                <td
-                  key={colIndex}
-                  style={cellStyle}
-                  onClick={() => handleClick(index)}
-                >
-                  {data[index]}
-                </td>
-              );
-            })}
-          </tr>
+            <tr key={day}>
+                <td>{day}</td>
+                {slots.map((slot, colIndex) => {
+                    const index = rowIndex * slots.length + colIndex;
+                    const cellStyle = {
+                        backgroundColor: data[index] > 0 ? '#B0BEC5' : '#FFFFFF',
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                        padding: '20px',  // Adjust padding to make the cells square
+                        height: '20px',   // Fixed height to ensure square shape
+                        width: '20px'  ,   // Fixed width to ensure square shape
+                    };
+                    return (
+                        <td
+                            key={colIndex}
+                            style={cellStyle}
+                            onClick={() => handleClick(index)}
+                        >
+                            {data[index]}
+                        </td>
+                    );
+                })}
+            </tr>
         ))}
-      </tbody>
-    </table>
+    </tbody>
+</table>
+
   );
 };
 
@@ -59,7 +62,18 @@ const TeacherAvailability = ({ professorName, availability, updateAvailability }
 
   return (
     <div className="slots">
-      <h1>Availability Slots for {professorName}</h1>
+      <h1 style={{ 
+    fontFamily: 'Arial Rounded MT Bold, sans-serif', 
+    fontSize: '24px', 
+    fontWeight: 'bold', 
+    color: 'rgba(51, 51, 51, 0.7)', 
+    textAlign: 'center', 
+    borderBottom: '2px solid #607d8b', 
+    paddingBottom: '10px', 
+    marginBottom: '20px' 
+}}>
+    Availability Slots for {professorName}
+</h1>
       <TableComponent data={data} setData={setData} />
     </div>
   );

@@ -34,9 +34,9 @@
     },
     "Classes": [
         {
-            "Subject": "CSE4403",
+            "Subject": "EEE4483",
             "Type": "L",
-            "Professor": "MM",
+            "Professor": "SH",
             "Group": [
                 "Sec1"
             ],
@@ -44,9 +44,9 @@
             "Length": 1
         },
         {
-            "Subject": "CSE4403",
+            "Subject": "EEE4483",
             "Type": "L",
-            "Professor": "MM",
+            "Professor": "SH",
             "Group": [
                 "Sec1"
             ],
@@ -54,44 +54,84 @@
             "Length": 1
         },
         {
-            "Subject": "CSE4403",
+            "Subject": "MATH4441",
             "Type": "L",
-            "Professor": "MM",
-            "Group": [
-                "Sec2"
-            ],
-            "Classroom": "r",
-            "Length": 1
-        },
-        {
-            "Subject": "CSE4403",
-            "Type": "L",
-            "Professor": "MM",
-            "Group": [
-                "Sec2"
-            ],
-            "Classroom": "r",
-            "Length": 1
-        },
-        {
-            "Subject": "CSE4402",
-            "Type": "P",
-            "Professor": "IT",
+            "Professor": "MSS",
             "Group": [
                 "Sec1"
             ],
-            "Classroom": "n",
-            "Length": 2
+            "Classroom": "r",
+            "Length": 1
         },
         {
-            "Subject": "CSE4402",
-            "Type": "P",
-            "Professor": "IT",
+            "Subject": "MATH4441",
+            "Type": "L",
+            "Professor": "MSS",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": "r",
+            "Length": 1
+        },
+        {
+            "Subject": "EEE4483",
+            "Type": "L",
+            "Professor": "SMA",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": "r",
+            "Length": 1
+        },
+        {
+            "Subject": "EEE4483",
+            "Type": "L",
+            "Professor": "SMA",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": "r",
+            "Length": 1
+        },
+        {
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": "r",
+            "Length": 1
+        },
+        {
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": "r",
+            "Length": 1
+        },
+        {
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
             "Group": [
                 "Sec2"
             ],
-            "Classroom": "n",
-            "Length": 2
+            "Classroom": "r",
+            "Length": 1
+        },
+        {
+            "Subject": "HUM4441",
+            "Type": "L",
+            "Professor": "MRH",
+            "Group": [
+                "Sec2"
+            ],
+            "Classroom": "r",
+            "Length": 1
         }
     ]
 }

@@ -28,7 +28,7 @@ function classInfo(timetable, idx) {
 
 
 
-function Student() {
+function NormalStudent() {
   const sectionRoutineRef = useRef(null);
   const sectionEventsRef = useRef(null);
   const separatorRef = useRef(null);
@@ -134,41 +134,11 @@ function Student() {
       }
     };
 
-    function createPollInterface(){
-      return(   
-      <form onSubmit={handlePollSubmit}>
-        <div>
-          <label>
-            Poll Title:
-            <input
-              type="text"
-              placeholder='Form title'
-              onChange={(e) => setTitle(e.target.value)}
-              required
-              name="title"
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Poll Link:
-            <input
-              type="text"
-              placeholder='Form link'
-              onChange={(e) => setLink(e.target.value)}
-              required
-              name="url"
-            />
-          </label>
-        </div>
-        <button type="submit">Create Poll</button>
-      </form>);
-    }
-  
+   
 
   return (
     <div className="Student">
-     <h1 className="StudentDashboard">CR's Dashboard</h1>
+     <h1 className="StudentDashboard">Student Dashboard</h1>
       <div>
         <select id="semester">
           {/* Options for semester dropdown */}
@@ -223,12 +193,6 @@ function Student() {
         <div className="sectionPolls" ref={sectionRoutineRef}>
           <h2>Student Polls</h2>
           {/*openGoogleForms only for CRS*/}
-          {<button className='PollButton'
-          title ="Copy paste form link here after creating a form"
-          onClick={openGoogleForms}>Create Forms</button>
-           
-        }
-        {createPollInterface()}
         <div> 
           <ol>
           {polls.map((poll) => (
@@ -258,4 +222,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default NormalStudent;

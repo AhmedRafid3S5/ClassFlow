@@ -148,20 +148,24 @@ function classInfo(timetable, idx) {
 
     return (
         <div className="routine-maker">
-            <div>
-                <select value={selectedSemester} onChange={handleSemesterChange}>
+           <h1 className="routine-header">ROUTINE CREATOR</h1>
+         <div>
+         <label>SEMESTER</label>
+                <select className="dropdown" value={selectedSemester} onChange={handleSemesterChange}>
                     {data.semesters.map(semester => (
                         <option key={semester} value={semester}>{semester}</option>
                     ))}
                 </select>
             </div>
             <div className="input-row">
-                <select value={formData.subject} name="subject" onChange={handleChange} disabled={!selectedSemester}>
+            <label>COURSE</label>
+                <select className="dropdown" value={formData.subject} name="subject" onChange={handleChange} disabled={!selectedSemester}>
                     {data.subjects.map(subject => (
                         <option key={subject} value={subject}>{subject}</option>
                     ))}
                 </select>
-                <select value={formData.type} name="type" onChange={handleChange} disabled={!selectedSemester}>
+                <label>COURSE TYPE</label>
+                <select className="dropdown" value={formData.type} name="type" onChange={handleChange} disabled={!selectedSemester}>
                     <option key="N/A" value="N/A">N/A</option>
                     {data.types.map(type => (
                         <option key={type} value={type}>{type}</option>
@@ -169,54 +173,59 @@ function classInfo(timetable, idx) {
                 </select>
             </div>
             <div>
-                <select value={formData.professor} name="professor" onChange={handleChange} disabled={!selectedSemester}>
+            <label>PROFESSOR</label>
+                <select className="dropdown" value={formData.professor} name="professor" onChange={handleChange} disabled={!selectedSemester}>
                     {data.professors.map(prof => (
                         <option key={prof} value={prof}>{prof}</option>
                     ))}
                 </select>
             </div>
             <div>
-                <select value={formData.section} name="section" onChange={handleChange} disabled={!selectedSemester}>
+            <label>SECTION</label>
+                <select className="dropdown" value={formData.section} name="section" onChange={handleChange} disabled={!selectedSemester}>
                     {data.groups.map(group => (
                         <option key={group} value={group}>{group}</option>
                     ))}
                 </select>
             </div>
             <div>
-                <select value={formData.duration} name="duration" onChange={handleChange} disabled={!selectedSemester}>
+            <label>CLASS DURATION</label>
+                <select className="dropdown" value={formData.duration} name="duration" onChange={handleChange} disabled={!selectedSemester}>
                     <option value="0">N/A</option>
                     <option value="1">1hr 15 min</option>
                     <option value="2">2hr 30 min</option>
                 </select>
             </div>
             <div>
-                <input type="number" name="classesPerWeek" value={formData.classesPerWeek} onChange={handleChange} placeholder="Classes a week" disabled={!selectedSemester} />
+                <input type="number" name="classesPerWeek" value={formData.classesPerWeek} onChange={handleChange} placeholder="Classes a week" disabled={!selectedSemester}  style={{ width: '600px' }} />
             </div>
-            <div>
-                <button onClick={handleAddClass} disabled={!selectedSemester}>Add</button>
-                <button onClick={handleDone} disabled={!classesList.length}>Done</button>
-                <button 
-                    onClick={handleGenerateRoutine} 
-                    disabled={!isDonePressed} 
-                    className={!isDonePressed ? 'disabled-button' : ''}
-                >
-                    Generate Routine
-                </button>
+            <div className="button-container">
+    <button onClick={handleAddClass} disabled={!selectedSemester} className="pastel-button">Add</button>
+    <button onClick={handleDone} disabled={!classesList.length} className="pastel-button">Done</button>
+    <button 
+        onClick={handleGenerateRoutine} 
+        disabled={!isDonePressed} 
+        className={`pastel-button ${!isDonePressed ? 'disabled-button' : ''}`}
+    >
+        Generate Routine
+    </button>
+</div>
+<ol>
+    {classesList.map((cls, index) => (
+        <li key={index}>
+            {`${cls.Subject} ${cls.Type} - ${cls.Professor} - ${cls.Group.join(', ')}`}
+            <div className="button-container">
+            <button onClick={() => handleRemoveClass(index)} className="remove-button">Remove</button>
             </div>
-            <ol>
-                {classesList.map((cls, index) => (
-                    <li key={index}>
-                        {`${cls.Subject} ${cls.Type} - ${cls.Professor} - ${cls.Group.join(', ')}`}
-                        <button onClick={() => handleRemoveClass(index)}>Remove</button>
-                    </li>
-                ))}
-            </ol>
+        </li>
+    ))}
+</ol>
 
             {/* Show generated routine on routine maker dashboard*/}
             {/*For CSS Styling: ADD a header here that says Generated Routine*/}
 
             <div>
-           {isGeneratePressed && ( <table id="timetable" className='timetable'>
+           {isGeneratePressed && ( <table id="RoutinePageTimetable" className='RoutinePageTimetable'>
         <thead>
           <tr>
             <th>Day</th>
@@ -249,8 +258,8 @@ function classInfo(timetable, idx) {
         ))}
             </div>
 
-      <div>
-        <button onClick={handleSaveOccupancy}>Save Occupancy</button>
+      <div className="button-container">
+        <button className="pastel-button" onClick={handleSaveOccupancy}>Save Occupancy</button>
       </div>
         </div>
         

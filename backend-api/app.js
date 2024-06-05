@@ -408,7 +408,7 @@ app.post('/polls', async (req, res) => {
 
 app.get('/infoCSE', async (req, res) => {
   try {
-    data = require('../my-app/src/evolutionary-timetable-scheduling-master/classes/Info_CSE.json')
+    data = require('../frontend/src/evolutionary-timetable-scheduling-master/classes/Info_CSE.json')
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
