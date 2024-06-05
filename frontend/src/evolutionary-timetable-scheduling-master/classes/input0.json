@@ -34,59 +34,9 @@
     },
     "Classes": [
         {
-            "Subject": "CSE4103",
+            "Subject": "CSE4403",
             "Type": "L",
-            "Professor": "MRK",
-            "Group": [
-                "Sec1"
-            ],
-            "Classroom": "r",
-            "Length": 1
-        },
-        {
-            "Subject": "CSE4103",
-            "Type": "L",
-            "Professor": "MRK",
-            "Group": [
-                "Sec1"
-            ],
-            "Classroom": "r",
-            "Length": 1
-        },
-        {
-            "Subject": "CSE4107",
-            "Type": "L",
-            "Professor": "SMA",
-            "Group": [
-                "Sec1"
-            ],
-            "Classroom": "r",
-            "Length": 1
-        },
-        {
-            "Subject": "CSE4107",
-            "Type": "L",
-            "Professor": "SMA",
-            "Group": [
-                "Sec1"
-            ],
-            "Classroom": "r",
-            "Length": 1
-        },
-        {
-            "Subject": "EEE4183",
-            "Type": "L",
-            "Professor": "MSS",
-            "Group": [
-                "Sec1"
-            ],
-            "Classroom": "r",
-            "Length": 1
-        },
-        {
-            "Subject": "EEE4183",
-            "Type": "L",
-            "Professor": "MSS",
+            "Professor": "MM",
             "Group": [
                 "Sec1"
             ],
@@ -108,10 +58,40 @@
             "Type": "L",
             "Professor": "MM",
             "Group": [
-                "Sec1"
+                "Sec2"
             ],
             "Classroom": "r",
             "Length": 1
+        },
+        {
+            "Subject": "CSE4403",
+            "Type": "L",
+            "Professor": "MM",
+            "Group": [
+                "Sec2"
+            ],
+            "Classroom": "r",
+            "Length": 1
+        },
+        {
+            "Subject": "CSE4402",
+            "Type": "P",
+            "Professor": "IT",
+            "Group": [
+                "Sec1"
+            ],
+            "Classroom": "n",
+            "Length": 2
+        },
+        {
+            "Subject": "CSE4402",
+            "Type": "P",
+            "Professor": "IT",
+            "Group": [
+                "Sec2"
+            ],
+            "Classroom": "n",
+            "Length": 2
         }
     ]
 }

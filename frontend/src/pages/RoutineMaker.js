@@ -6,13 +6,21 @@
 //1st figure out how to create an input file.
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import './routineMakerStyles.css';
+import TeacherAvailability from './TeacherAvailability';
 
 function RoutineMaker() {
 
+   //for creating a color background
+   useEffect(() => {
+    // When the Student component mounts
+    document.body.classList.add('routineMaker-body');
 
-   
-
+    // Cleanup function when the component unmounts
+    return () => {
+      document.body.classList.remove('routineMaker-body');
+    };
+  }, []);
     const [data, setData] = useState({
         classrooms: {},
         semesters: [],
@@ -21,7 +29,7 @@ function RoutineMaker() {
         types: ['L', 'P'], // Assuming these are constant
         subjects: [],
     });
-    
+
     const [selectedSemester, setSelectedSemester] = useState('');
     const [formData, setFormData] = useState({
         subject: '',
@@ -32,6 +40,8 @@ function RoutineMaker() {
         classesPerWeek: ''
     });
     const [classesList, setClassesList] = useState([]);
+    const [isDonePressed, setIsDonePressed] = useState(false);
+    const [isGeneratePressed,setIsGeneratePressed] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:3000/infoCSE')
@@ -47,14 +57,9 @@ function RoutineMaker() {
             })
             .catch(error => console.error('Failed to fetch data', error));
     }, []);
-    
 
     const handleSemesterChange = (event) => {
         setSelectedSemester(event.target.value);
-        setData({
-            ...data,
-            
-        });
     };
 
     const handleChange = (event) => {
@@ -89,32 +94,57 @@ function RoutineMaker() {
         setClassesList(prev => prev.filter((_, i) => i !== index));
     };
 
-    const sampleClassList = [
-        { "Subject": "CSE4406", "Type": "L", "Professor": "Sakhawat", "Group": ["Sec1","Sec2"], "Classroom": "r", "Length": "2" },
-        { "Subject": "CSE4406", "Type": "L", "Professor": "Sakhawat", "Group": ["Sec2"], "Classroom": "r", "Length": "2" },
-        { "Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec1"], "Classroom": "r", "Length": "1" },
-        { "Subject": "CSE4403", "Type": "L", "Professor": "Milu", "Group": ["Sec2"], "Classroom": "r", "Length": "1" }
-      ];
-      
-      const handleDone = () => {
+    const handleDone = () => {
         const outputData = {
-          Classrooms: data.classrooms,
-          Classes: classesList
+            Classrooms: data.classrooms,
+            Classes: classesList
         };
-      
-        axios.post('http://localhost:3000/saveClassData', outputData)
-          .then(response => console.log('Data saved successfully'))
-          .catch(error => console.error('Failed to save data', error));
-      };
 
-      const handleGenerateRoutine = () => {
-        axios.post('http://localhost:3000/run-script')
-          .then(response => console.log('Script executed successfully:', response.data))
-          .catch(error => console.error('Failed to execute script:', error));
+        axios.post('http://localhost:3000/saveClassData', outputData)
+            .then(response => {
+                console.log('Data saved successfully');
+                setIsDonePressed(true);
+            })
+            .catch(error => console.error('Failed to save data', error));
     };
 
+    const handleGenerateRoutine = () => {
+        axios.post('http://localhost:3000/run-script')
+            .then(response => {
+              console.log('Script executed successfully:', response.data)
+              setIsGeneratePressed(true);
+            })
+            .catch(error => console.error('Failed to execute script:', error));
+    };
+
+    //functions and utilities for table that is generated
+const timetable = require('../evolutionary-timetable-scheduling-master/processedTimetable.json');
+const occupancyList = require('../evolutionary-timetable-scheduling-master/classes/occupancy.json');
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+const slots = ["8:00AM-9:15AM", "9:15AM-10:30AM", "10:30AM-11:45AM", "11:45AM-1:00PM", "2:30PM-3:45PM", "3:45PM-5:00PM"];
+//const {getEventsList} = require('./database');
 
 
+const handleSaveOccupancy = () => {
+  axios.post('http://localhost:3000/save-occupancy', occupancyList)
+    .then(response => console.log('Occupancy saved successfully'))
+    .catch(error => console.error('Failed to save occupancy', error));
+};
+
+const updateProfessorAvailability = (professorName, newAvailability) => {
+  occupancyList.Professors[professorName] = newAvailability;
+};
+
+
+
+function classInfo(timetable, idx) {
+  var info = [];
+  for (var i = 0; i < timetable[idx].length; i++) {
+    var str = timetable[idx][i].Subject + " " + timetable[idx][i].Assigned_classroom + " " + timetable[idx][i].Group[0] + (timetable[idx][i].Length === '1' ? "\n" : "(2.5Hr)"+"\n");
+    info.push(str);
+  }
+  return info;
+}
 
     return (
         <div className="routine-maker">
@@ -132,7 +162,7 @@ function RoutineMaker() {
                     ))}
                 </select>
                 <select value={formData.type} name="type" onChange={handleChange} disabled={!selectedSemester}>
-                    <option key = "N/A" value = "N/A">N/A</option>
+                    <option key="N/A" value="N/A">N/A</option>
                     {data.types.map(type => (
                         <option key={type} value={type}>{type}</option>
                     ))}
@@ -165,7 +195,13 @@ function RoutineMaker() {
             <div>
                 <button onClick={handleAddClass} disabled={!selectedSemester}>Add</button>
                 <button onClick={handleDone} disabled={!classesList.length}>Done</button>
-                <button onClick={handleGenerateRoutine} disabled={!classesList.length}>Generate Routine</button>
+                <button 
+                    onClick={handleGenerateRoutine} 
+                    disabled={!isDonePressed} 
+                    className={!isDonePressed ? 'disabled-button' : ''}
+                >
+                    Generate Routine
+                </button>
             </div>
             <ol>
                 {classesList.map((cls, index) => (
@@ -175,8 +211,58 @@ function RoutineMaker() {
                     </li>
                 ))}
             </ol>
+
+            {/* Show generated routine on routine maker dashboard*/}
+            {/*For CSS Styling: ADD a header here that says Generated Routine*/}
+
+            <div>
+           {isGeneratePressed && ( <table id="timetable" className='timetable'>
+        <thead>
+          <tr>
+            <th>Day</th>
+            {slots.map((slot, index) => (
+              <th key={index}>{slot}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {days.map((day, idx) => (
+            <tr key={idx}>
+              <td>{day}</td>
+              {slots.map((slot, index) => (
+                <td key={index}>{classInfo(timetable, idx * slots.length + index)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>)}
+            </div>
+
+            <div>
+            {Object.keys(occupancyList.Professors).map(professorName => (
+          <TeacherAvailability
+            key={professorName}
+            professorName={professorName}
+            availability={occupancyList.Professors[professorName]}
+            updateAvailability={(newAvailability) => updateProfessorAvailability(professorName, newAvailability)}
+          />
+        ))}
+            </div>
+
+      <div>
+        <button onClick={handleSaveOccupancy}>Save Occupancy</button>
+      </div>
         </div>
+        
     );
 }
+
+
+
+
+
+
+
+
 
 export default RoutineMaker;

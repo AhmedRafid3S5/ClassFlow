@@ -1,0 +1,23 @@
+/* RoutineMaker.css */
+
+button.disabled-button {
+    background-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
+.routineMaker-body {
+    background-color: #223655; /* Backup color */
+    background-image: url('../assets/StuDash.jpg'); /* Path to the image file */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background */
+    background-size: cover; /* Cover the entire area of the element */
+    -webkit-backdrop-filter: blur(20px); /* Apply blur effect for supporting browsers */
+    backdrop-filter: blur(20px); /* Blur effect for modern browsers */
+    position: absolute; /* Optional: to position relative to the viewport */
+    top: 0;
+    left: 0;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+  }
+  

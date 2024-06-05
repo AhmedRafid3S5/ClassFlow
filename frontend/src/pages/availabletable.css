@@ -1,0 +1,19 @@
+.availability-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .availability-table th,
+  .availability-table td {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    text-align: center;
+    padding: 0; /* Remove default padding */
+  }
+  
+
+  .availability-table tbody tr{
+    height: 20px; /* Adjust the height as needed */
+    border-top: 2.5px solid black; /* Add solid border below each row */
+  }

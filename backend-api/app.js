@@ -4,10 +4,12 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 const fs = require('fs').promises;
 const util = require('util');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 const PORT = 3000;
 
 // MySQL database configuration
@@ -80,35 +82,6 @@ app.post('/saveClassData', async (req, res) => {
 const { spawn } = require('child_process');
 
 
-/*app.post('/run-script', (req, res) => {
-const scriptPath = '../frontend/src/evolutionary-timetable-scheduling-master/console.js';
-  const child = spawn('node', [scriptPath]);
-
-  let stdoutData = '';
-  let stderrData = '';
-
-  child.stdout.on('data', (data) => {
-    stdoutData += data.toString();
-  });
-
-  child.stderr.on('data', (data) => {
-    stderrData += data.toString();
-  });
-
-  child.on('error', (error) => {
-    console.error(`Error executing script: ${error}`);
-    res.status(500).send(`Error executing script: ${error}`);
-  });
-
-  child.on('close', (code) => {
-    console.log(`Child process exited with code ${code}`);
-    if (code === 0) {
-      res.status(200).send(`Script executed successfully: ${stdoutData}`);
-    } else {
-      res.status(500).send(`Script failed with code ${code}: ${stderrData}`);
-    }
-  });*/
-
   // Classrooms object to be passed to the function
 const classrooms = {
   "a": ["Atelje"],
@@ -119,6 +92,7 @@ const classrooms = {
 };
 
 const writeFile = util.promisify(fs.writeFile);
+
 
 async function createInput(req, res) {
   try {
@@ -321,6 +295,34 @@ writeData(data,frontendPath);
 
 
 
+
+app.post('/save-occupancy', async (req, res) => {
+  const fs = require('fs');
+  const inputfilePath = 'C:\\Users\\Rafid\\Documents\\GitHub\\ClassFlow\\frontend\\src\\evolutionary-timetable-scheduling-master\\classes\\occupancy.json';
+  const samplePath = '../frontend/src/evolutionary-timetable-scheduling-master/classes/occupancy.json';
+  const occupancyData = JSON.parse(fs.readFileSync(samplePath, 'utf8'));
+  try {
+    // Read the existing JSON file
+   
+    
+
+    // Update only the Professors object
+    occupancyData.Professors = req.body.Professors;
+
+    // Convert data to JSON string with indentation
+    const jsonData = JSON.stringify(occupancyData, null, 4);
+
+    // Write JSON string to file, overwriting if it already exists
+    await writeFile(inputfilePath, jsonData);
+    console.log('Data written successfully to', inputfilePath);
+    console.log('JSON file created successfully');
+    res.status(200).send('Occupancy saved successfully');
+  } catch (error) {
+    // Log an error message if something goes wrong during the file write
+    console.error('Failed to write data to',inputfilePath, ':', error);
+    res.status(500).send('Error writing to file');
+  }
+});
 
 
 // API endpoint to fetch upcoming events
